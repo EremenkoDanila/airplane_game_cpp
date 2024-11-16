@@ -5,6 +5,9 @@ project(AirplaneGame)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/font/Sansation-Regular.ttf
                ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pic/plane.png
+               ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
