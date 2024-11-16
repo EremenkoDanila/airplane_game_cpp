@@ -33,7 +33,7 @@ void moveSprite(sf::Sprite& sprite) {
 int main() {
     while (true)
     {
-        
+        //help
     // Создаем окно
     auto window = sf::RenderWindow({1920u, 1080u}, "CMake SFML Project");
     window.setFramerateLimit(144);
