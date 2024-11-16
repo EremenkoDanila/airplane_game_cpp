@@ -12,6 +12,15 @@ int main() {
     circle.setFillColor(sf::Color::Green); // Цвет круга
     circle.setPosition(960 - 50, 540 - 50); // Центр экрана
 
+    sf::Texture plane_pic;
+    if (!plane_pic.loadFromFile("C:/airplane_game_cpp/pic/plane.png")){
+        std::cerr << "Не удалось загрузить файл!" << std::endl;
+        return -1;
+    }
+    sf::Sprite sprite(plane_pic);
+    sprite.setPosition(160 - 50, 240 - 50);
+    //plane_pic.setPosition(160 - 50, 240 - 50); // Центр экрана
+
     // Создаем текст
     sf::Font font;
     if (!font.loadFromFile("C:/airplane_game_cpp/font/Sansation-Regular.ttf")) {
@@ -20,7 +29,7 @@ int main() {
     }
 
     sf::Text text("This is square", font, 30); // Текст "Это квадрат" с размером шрифта 30
-    text.setFillColor(sf::Color::White); // Цвет текста
+    text.setFillColor(sf::Color::Black); // Цвет текста
     text.setPosition(960 - 50, 540 + 60); // Позиция текста под кругом
 
     while (window.isOpen()) {
@@ -30,9 +39,10 @@ int main() {
             }
         }
 
-        window.clear(); // Очищаем экран
+        window.clear(sf::Color::White); // Очищаем экран
         window.draw(circle); // Рисуем круг
         window.draw(text); // Рисуем текст
+        window.draw(sprite);
         window.display(); // Отображаем содержимое окна
     }
 
