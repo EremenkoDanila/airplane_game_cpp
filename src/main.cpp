@@ -29,8 +29,9 @@ int main() {
                 window.close();
             }
         }
-
-        window.clear(); // Очищаем экран
+          // Цвет фона: светло-серый
+        window.clear();
+        window.clear(sf::Color::White); // Очищаем экран
         window.draw(circle); // Рисуем круг
         window.draw(text); // Рисуем текст
         window.display(); // Отображаем содержимое окна
