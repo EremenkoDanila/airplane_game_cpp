@@ -30,6 +30,8 @@ FetchContent_MakeAvailable(SFML)
 
 # Подключаем директорию с библиотекой game_map
 add_subdirectory(src/game_map)
+add_subdirectory(src/airplane_lib)
+
 
 # Указываем список исходных файлов проекта
 set(PROJECT_SOURCE_LIST
@@ -41,5 +43,7 @@ set(PROJECT_SOURCE_LIST
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_LIST})
 
 # Подключаем библиотеки
-target_link_libraries(${PROJECT_NAME} PRIVATE game_map sfml-graphics)
+target_link_libraries(${PROJECT_NAME} PRIVATE game_map airplane_lib sfml-graphics)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
+
+
