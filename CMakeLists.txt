@@ -28,23 +28,18 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
+# Подключаем директорию с библиотекой game_map
+add_subdirectory(src/game_map)
 
+# Указываем список исходных файлов проекта
+set(PROJECT_SOURCE_LIST
+    src/main.cpp
+    # Добавьте сюда другие исходные файлы, если они есть
+)
 
+# Создаем исполняемый файл проекта
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_LIST})
 
-add_subdirectory(game_map)
-
-set(${project}_SOURCE_LIST
-        ${${project}_SOURCES})
-
-add_executable(${project}
-        ${${project}_SOURCE_LIST})
-
-
-target_link_libraries(${project} game_map)
-
-
-
-
-add_executable(main src/main.cpp)
-target_link_libraries(main PRIVATE sfml-graphics)
-target_compile_features(main PRIVATE cxx_std_17)
+# Подключаем библиотеки
+target_link_libraries(${PROJECT_NAME} PRIVATE game_map sfml-graphics)
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
