@@ -35,11 +35,9 @@ void moveSprite(sf::Sprite& sprite) {
 int main() {
     while (true)
     {
-        //help
-    // Создаем окно
+
     auto window = sf::RenderWindow({1920u, 1080u}, "CMake SFML Project");
     window.setFramerateLimit(144);
-
 
     std::string path_map = "C:/airplane_game_cpp/pic/map.png";
     GameMap* map = new GameMap(path_map);
@@ -54,7 +52,9 @@ int main() {
                 window.close();
             }
         }
+        
         map->displayMap(window);
+        window.display();
     }
     return 0;
     }

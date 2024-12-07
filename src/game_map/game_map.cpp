@@ -9,23 +9,13 @@ GameMap::GameMap( const std::string& backgroundFilePath) {
         backgroundSprite.setTexture(backgroundTexture);
         // Устанавливаем размер фона по размеру окна
         backgroundSprite.setScale(
-            static_cast<float>(800) / backgroundTexture.getSize().x,
-            static_cast<float>(600) / backgroundTexture.getSize().y
+            static_cast<float>(1920u) / backgroundTexture.getSize().x,
+            static_cast<float>(1080u) / backgroundTexture.getSize().y
         );
     }
-/*
-    // Загружаем текстуру карты
-    if (!texture.loadFromFile(mapFilePath)) {
-        std::cerr << "Error: Could not load map image." << std::endl;
-    } else {
-        sprite.setTexture(texture);
-    }
-*/
 }
 
 void GameMap::displayMap(sf::RenderWindow& window) {
-    // Отображаем фон
+    window.clear(sf::Color::Green);
     window.draw(backgroundSprite);
-    // Отображаем карту поверх фона
-   // window.draw(sprite);
 }
