@@ -5,6 +5,13 @@ project(${project})
 
 set(CMAKE_CXX_STANDARD 17)
 
+# Ищем установленную библиотеку SFML
+#set(SFML_DIR ".*SFMLConfig\.cmake$"
+
+set(SFML_DIR "../../build/_deps/sfml-src/include/SFML")
+#find_package(SFML 2.6 REQUIRED COMPONENTS graphics window system)
+
+# Определяем источники и заголовочные файлы
 set(${project}_SOURCES
         game_map.cpp)
 
@@ -15,6 +22,10 @@ set(${project}_SOURCE_LIST
         ${${project}_SOURCES}
         ${${project}_HEADERS})
 
+# Создаем статическую библиотеку
 add_library(${project}
         STATIC
         ${${project}_SOURCE_LIST})
+
+# Связываем библиотеку с SFML
+target_link_libraries(${project} PRIVATE sfml-graphics sfml-window sfml-system)
