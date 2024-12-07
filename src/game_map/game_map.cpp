@@ -10,7 +10,7 @@ GameMap::GameMap( const std::string& backgroundFilePath) {
         // Устанавливаем размер фона по размеру окна
         backgroundSprite.setScale(
             static_cast<float>(1920u) / backgroundTexture.getSize().x,
-            static_cast<float>(1080u) / backgroundTexture.getSize().y
+            static_cast<float>(1080) / backgroundTexture.getSize().y
         );
     }
 }
