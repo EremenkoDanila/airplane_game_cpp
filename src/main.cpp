@@ -7,22 +7,22 @@ void moveSprite(sf::Sprite& sprite) {
     // Получаем состояние клавиш
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         // Перемещаем спрайт вверх
-        //sprite.rotate(-45.f);
+        sprite.rotate(-45.f);
         sprite.move(0.f, -5.f);  // Изменение координаты Y
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         // Перемещаем спрайт вниз
-         //sprite.rotate(45.f);
+         sprite.rotate(45.f);
         sprite.move(0.f, 5.f);   // Изменение координаты Y
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         // Перемещаем спрайт влево
-        // sprite.rotate(-90.f);
+         sprite.rotate(-90.f);
         sprite.move(-5.f, 0.f);  // Изменение координаты X
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         // Перемещаем спрайт вправо
-        // sprite.rotate(90.f);
+         sprite.rotate(90.f);
         sprite.move(5.f, 0.f);   // Изменение координаты X
     }
 }
@@ -98,7 +98,7 @@ int main() {
         moveSprite(sprite);
 
         sf::Vector2f position = sprite.getPosition();
-        if((position.x > 450 and position.x < 1200 ) and (position.y > 200 and position.y < 790))
+        if((position.x > 450 && position.x < 1200 ) && (position.y > 200 && position.y < 790))
         {
             int flg_x =1 ;
             int flg_y =1 ;
@@ -113,7 +113,7 @@ int main() {
             break;
         }
 
-        if (position.x > 1800 and flg_x!=1 and flg_y!=1)
+        if (position.x > 1800 && flg_x!=1 && flg_y!=1)
          {
             for (int i = 0; i < 2; ++i) {
                 window.clear(sf::Color::Green);  
