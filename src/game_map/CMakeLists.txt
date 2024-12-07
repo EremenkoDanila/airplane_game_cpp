@@ -9,7 +9,6 @@ set(CMAKE_CXX_STANDARD 17)
 #set(SFML_DIR ".*SFMLConfig\.cmake$"
 
 set(SFML_DIR "../../build/_deps/sfml-src/include/SFML")
-#find_package(SFML 2.6 REQUIRED COMPONENTS graphics window system)
 
 # Определяем источники и заголовочные файлы
 set(${project}_SOURCES
