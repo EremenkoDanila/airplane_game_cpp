@@ -2,15 +2,23 @@
 cmake_minimum_required(VERSION 3.28)
 project(AirplaneGame)
 
+
+# Подключаем текст 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/font/Sansation-Regular.ttf
                ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 
+# Подключаем картинки                
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pic/plane.png
                ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
+
+
+# Путь в exe
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+# Скачиваем SFML
+option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 include(FetchContent)
 FetchContent_Declare(SFML
     GIT_REPOSITORY https://github.com/SFML/SFML.git
@@ -20,7 +28,23 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
+
+
+
+add_subdirectory(game_map)
+
+set(${project}_SOURCE_LIST
+        ${${project}_SOURCES})
+
+add_executable(${project}
+        ${${project}_SOURCE_LIST})
+
+
+target_link_libraries(${project} game_map)
+
+
+
+
 add_executable(main src/main.cpp)
 target_link_libraries(main PRIVATE sfml-graphics)
 target_compile_features(main PRIVATE cxx_std_17)
-
