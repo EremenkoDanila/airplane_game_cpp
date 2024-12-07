@@ -1,12 +1,13 @@
 #ifndef game_map
 #define game_map
 
-#include <SFML/Graphics.hpp>>
+#include <SFML/Graphics.hpp>
 #include <string>
 
 class GameMap {
 public:
-    GameMap(const std::string& mapFilePath, const std::string& backgroundFilePath);
+    //GameMap(const std::string& mapFilePath, const std::string& backgroundFilePath);
+    GameMap(const std::string& backgroundFilePath);
     void displayMap(sf::RenderWindow& window);
 
 private:

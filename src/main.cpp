@@ -1,7 +1,9 @@
 #include <SFML/Graphics.hpp>
+#include "game_map/game_header.h"
 #include <iostream>
 #include <filesystem>
 #include <thread>
+#include <string>
 
 void moveSprite(sf::Sprite& sprite) {
     // Получаем состояние клавиш
@@ -39,14 +41,21 @@ int main() {
     window.setFramerateLimit(144);
 
 
-    
-    while (window.isOpen()) {
-        for (auto event = sf::Event(); window.pollEvent(event);) {
-            if (event.type == sf::Event::Closed) {
+    std::string path_map = "C:/airplane_game_cpp/pic/map.png";
+    GameMap* map = new GameMap(path_map);
+
+
+    while (window.isOpen()) 
+    {
+        for (auto event = sf::Event(); window.pollEvent(event);) 
+        {
+            if (event.type == sf::Event::Closed) 
+            {
                 window.close();
             }
         }
+        map->displayMap(window);
     }
     return 0;
-}
+    }
 }

@@ -1,7 +1,7 @@
 #include "game_header.h"
 #include <iostream>
-
-GameMap::GameMap(const std::string& mapFilePath, const std::string& backgroundFilePath) {
+//const std::string& mapFilePath,
+GameMap::GameMap( const std::string& backgroundFilePath) {
     // Загружаем текстуру фона
     if (!backgroundTexture.loadFromFile(backgroundFilePath)) {
         std::cerr << "Error: Could not load background image." << std::endl;
@@ -13,18 +13,19 @@ GameMap::GameMap(const std::string& mapFilePath, const std::string& backgroundFi
             static_cast<float>(600) / backgroundTexture.getSize().y
         );
     }
-
+/*
     // Загружаем текстуру карты
     if (!texture.loadFromFile(mapFilePath)) {
         std::cerr << "Error: Could not load map image." << std::endl;
     } else {
         sprite.setTexture(texture);
     }
+*/
 }
 
 void GameMap::displayMap(sf::RenderWindow& window) {
     // Отображаем фон
     window.draw(backgroundSprite);
     // Отображаем карту поверх фона
-    window.draw(sprite);
+   // window.draw(sprite);
 }
