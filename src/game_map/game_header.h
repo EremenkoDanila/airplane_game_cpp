@@ -10,6 +10,8 @@ public:
     void displayMap(sf::RenderWindow& window);
 
 private:
+    sf::View border;
+
     sf::Texture backgroundTexture; // Текстура фона
     sf::Sprite backgroundSprite;   // Спрайт фона
 };
