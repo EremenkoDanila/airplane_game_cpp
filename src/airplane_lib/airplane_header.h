@@ -54,7 +54,7 @@ class Creator{
 
 class ConcreteCreator : public Creator{
     public:
-    Creator(){};
+    ConcreteCreator(){};
     ~ConcreteCreator() override;
     air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position) override
      {
