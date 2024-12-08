@@ -19,15 +19,16 @@ int main() {
     GameMap* map = new GameMap(path_map);
 
     std::string path_airplane = "../../pic/friend_fighter.png";
+    Creator* creator = new ConcreteCreator();
+    air_vehicles* airplane = creator->creat_airplane_friend(100, 10, path_airplane, sf::Vector2f(960, 540));
 
-    Creator *creator = new ConcreteCreator();
-
+    delete creator;
     while (window.isOpen()) 
     {
         for(auto event = sf::Event(); window.pollEvent(event);){if (event.type == sf::Event::Closed) {window.close();}} // Проверяем закрытие
 
         map->displayMap(window);
-
+        airplane->display(window);
         window.display();
     }
     return 0;
