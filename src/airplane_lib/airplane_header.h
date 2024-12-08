@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <iostream>
 
 void moveSprite(sf::Sprite& sprite);
 class air_vehicles{
@@ -11,9 +12,8 @@ class air_vehicles{
     virtual void set_hp() = 0;
     virtual void set_speed() = 0;
 
-    virtual void set_border()= 0;
-    virtual void set_backgroundTexture()= 0;
-    virtual void set_backgroundSprite()= 0;
+    virtual void setTexture() = 0;
+    virtual void setPosition() = 0;
 
     virtual void moveSprite(sf::Sprite& sprite) = 0;
 };
@@ -23,17 +23,18 @@ class airplane_friend : public air_vehicles{
 
     unsigned int hp;
     unsigned int speed;
-    sf::View border;
-    sf::Texture backgroundTexture; 
-    sf::Sprite backgroundSprite;   
+
+    sf::Sprite sprite;    
+    sf::Texture texture; 
 
     public:
     ~airplane_friend();
-    airplane_friend(int hp_, int speed_, ) { set_border();};
+    airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position);
     void set_hp(int hp_) {hp = hp_;}
     void set_speed(int speed_)  { speed= speed_;} 
 
-    void set_texture(const std::string& backgroundFilePath) ;
+    void setTexture(const std::string& texturePath);
+    void setPosition(const sf::Vector2f& position);
 
     void moveSprite(sf::Sprite& sprite);
 
@@ -50,7 +51,10 @@ class Creator{
 class ConcreteCreator : public Creator{
     public:
     ~ConcreteCreator();
-    air_vehicles *airplane_friend();
+    air_vehicles *airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position)
+     {
+        return new airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position)
+     };
 };
 
 #endif

@@ -24,27 +24,25 @@ void moveSprite(sf::Sprite& sprite) {
     }
 }
 
-class Airplane {
-private:
-    sf::Sprite sprite;    // Спрайт самолета
-    sf::Texture texture;  // Текстура самолета
 
-public:
-    // Конструктор по умолчанию
-    Airplane() = default;
 
     // Конструктор с параметрами
-    Airplane(const std::string& texturePath, const sf::Vector2f& position) {
+   airplane_friend::airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position) 
+   {
         if (!texture.loadFromFile(texturePath)) {
             std::cerr << "Failed to load airplane texture from: " << texturePath << std::endl;
             throw std::runtime_error("Texture loading failed");
         }
+        this->hp = hp_;
+        this->speed = speed_;
         sprite.setTexture(texture);
         sprite.setPosition(position);
+
     }
+
 
     // Установка текстуры и позиции
-    void setTexture(const std::string& texturePath) {
+    void airplane_friend::setTexture(const std::string& texturePath) {
         if (!texture.loadFromFile(texturePath)) {
             std::cerr << "Failed to load airplane texture from: " << texturePath << std::endl;
             throw std::runtime_error("Texture loading failed");
@@ -52,19 +50,8 @@ public:
         sprite.setTexture(texture);
     }
 
-    void setPosition(const sf::Vector2f& position) {
+    void airplane_friend::setPosition(const sf::Vector2f& position) {
         sprite.setPosition(position);
     }
-
-    // Метод для получения спрайта самолета (для рисования)
-    sf::Sprite& getSprite() {
-        return sprite;
-    }
-
-    // Метод для обновления самолета (например, движение)
-    void update(float deltaX, float deltaY) {
-        sprite.move(deltaX, deltaY);
-    }
-};
 
 
