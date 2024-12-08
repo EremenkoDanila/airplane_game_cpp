@@ -30,7 +30,7 @@ int main() {
         airplane->display(window);
         window.display();
     }
-    airplane->remove_airplane_friend(airplane);
+    creator->remove_airplane_friend(airplane);
     return 0;
     }
 }
