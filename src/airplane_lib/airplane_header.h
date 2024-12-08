@@ -47,7 +47,7 @@ class Creator{
     public:
     virtual ~Creator();
     virtual air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position)=0;
-
+    virtual void remove_airplane_friend(air_vehicles *airplane)=0;
 };
 
 class ConcreteCreator : public Creator{
@@ -58,6 +58,7 @@ class ConcreteCreator : public Creator{
         air_vehicles *tmp = new airplane_friend(hp_, speed_, texturePath, position);
         return tmp;
      }
+     void remove_airplane_friend(air_vehicles *airplane) override {delete airplane;}
 };
 
 #endif
