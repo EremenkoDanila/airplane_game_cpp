@@ -29,6 +29,7 @@ class airplane_friend : public air_vehicles{
     sf::Texture texture; 
 
     public:
+    airplane_friend();
     ~airplane_friend();
     airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position);
     void set_hp(int hp_) {hp = hp_;}
@@ -45,6 +46,7 @@ class airplane_friend : public air_vehicles{
 
 class Creator{
     public:
+    Creator();
     virtual ~Creator();
     virtual air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position)=0;
     virtual void remove_airplane_friend(air_vehicles *airplane)=0;
@@ -52,6 +54,7 @@ class Creator{
 
 class ConcreteCreator : public Creator{
     public:
+    Creator(){};
     ~ConcreteCreator() override;
     air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position) override
      {
