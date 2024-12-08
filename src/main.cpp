@@ -22,7 +22,6 @@ int main() {
     Creator* creator = new ConcreteCreator();
     air_vehicles* airplane = creator->creat_airplane_friend(100, 10, path_airplane, sf::Vector2f(960, 540));
 
-    delete creator;
     while (window.isOpen()) 
     {
         for(auto event = sf::Event(); window.pollEvent(event);){if (event.type == sf::Event::Closed) {window.close();}} // Проверяем закрытие
@@ -31,6 +30,7 @@ int main() {
         airplane->display(window);
         window.display();
     }
+    airplane->remove_airplane_friend(airplane);
     return 0;
     }
 }
