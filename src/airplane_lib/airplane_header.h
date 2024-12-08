@@ -52,13 +52,13 @@ class Creator{
 
 class ConcreteCreator : public Creator{
     public:
-    ~ConcreteCreator();
+    ~ConcreteCreator() override;
     air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position) override
      {
-        air_vehicles *tmp = new airplane_friend(hp_, speed_, texturePath, position);
-        return tmp;
+        return new airplane_friend(hp_, speed_, texturePath, position);
      }
      void remove_airplane_friend(air_vehicles *airplane) override {delete airplane;}
 };
+
 
 #endif

@@ -54,3 +54,9 @@ void moveSprite(sf::Sprite& sprite) {
 void airplane_friend:: display(sf::RenderWindow& window) {;
     window.draw(sprite);
 }
+
+// Реализация деструктора для класса air_vehicles
+air_vehicles::~air_vehicles() {}
+
+// Реализация деструктора для класса Creator
+Creator::~Creator() {}
