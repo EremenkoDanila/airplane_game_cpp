@@ -24,4 +24,29 @@ void moveSprite(sf::Sprite& sprite) {
     }
 }
 
+// Структура для представления самолета
+struct Airplane {
+    sf::Sprite sprite;     // Спрайт самолета
+    sf::Texture texture;   // Текстура самолета
+};
+
+// Функция для создания объекта самолета
+Airplane createAirplane(const std::string& texturePath, const sf::Vector2f& position) {
+    Airplane airplane;
+
+    // Загружаем текстуру
+    if (!airplane.texture.loadFromFile(texturePath)) {
+        std::cerr << "Failed to load airplane texture from: " << texturePath << std::endl;
+        throw std::runtime_error("Texture loading failed");
+    }
+
+    // Устанавливаем текстуру в спрайт
+    airplane.sprite.setTexture(airplane.texture);
+
+    // Устанавливаем начальную позицию
+    airplane.sprite.setPosition(position);
+
+    return airplane;
+}
+
 
