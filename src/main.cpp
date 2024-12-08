@@ -1,5 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "game_map/game_header.h"
+#include "airplane_lib/airplane_header.h"
+
 #include <iostream>
 #include <filesystem>
 #include <thread>
@@ -17,8 +19,8 @@ int main() {
     GameMap* map = new GameMap(path_map);
 
     std::string path_airplane = "../../pic/friend_fighter.png";
-    
-    Creator *creator = new Creator();
+
+    Creator *creator = new ConcreteCreator();
 
     while (window.isOpen()) 
     {
