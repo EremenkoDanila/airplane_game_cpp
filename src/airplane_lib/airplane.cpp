@@ -29,14 +29,10 @@ void moveSprite(sf::Sprite& sprite) {
     // Конструктор с параметрами
    airplane_friend::airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position) 
    {
-        if (!texture.loadFromFile(texturePath)) {
-            std::cerr << "Failed to load airplane texture from: " << texturePath << std::endl;
-            throw std::runtime_error("Texture loading failed");
-        }
         this->hp = hp_;
         this->speed = speed_;
-        sprite.setTexture(texture);
-        sprite.setPosition(position);
+        setTexture(texturePath);
+        setPosition(position);
 
     }
 
@@ -55,3 +51,6 @@ void moveSprite(sf::Sprite& sprite) {
     }
 
 
+void airplane_friend:: display(sf::RenderWindow& window) {;
+    window.draw(sprite);
+}

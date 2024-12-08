@@ -9,13 +9,14 @@ void moveSprite(sf::Sprite& sprite);
 class air_vehicles{
     public:
     virtual ~air_vehicles();
-    virtual void set_hp() = 0;
-    virtual void set_speed() = 0;
+    virtual void set_hp(int hp_) = 0;
+    virtual void set_speed(int speed_) = 0;
 
-    virtual void setTexture() = 0;
-    virtual void setPosition() = 0;
+    virtual void setTexture(const std::string& texturePath) = 0;
+    virtual void setPosition(const sf::Vector2f& position) = 0;
 
     virtual void moveSprite(sf::Sprite& sprite) = 0;
+    virtual void display(sf::RenderWindow& window) = 0;
 };
 
 class airplane_friend : public air_vehicles{
@@ -37,6 +38,7 @@ class airplane_friend : public air_vehicles{
     void setPosition(const sf::Vector2f& position);
 
     void moveSprite(sf::Sprite& sprite);
+    void display(sf::RenderWindow& window);
 
 };
 
@@ -44,17 +46,18 @@ class airplane_friend : public air_vehicles{
 class Creator{
     public:
     virtual ~Creator();
-    virtual air_vehicles *airplane_friend()=0;
+    virtual air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position)=0;
 
 };
 
 class ConcreteCreator : public Creator{
     public:
     ~ConcreteCreator();
-    air_vehicles *airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position)
+    air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position) override
      {
-        return new airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position)
-     };
+        air_vehicles *tmp = new airplane_friend(hp_, speed_, texturePath, position);
+        return tmp;
+     }
 };
 
 #endif

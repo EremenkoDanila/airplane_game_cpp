@@ -16,12 +16,16 @@ int main() {
     std::string path_map = "../../pic/map.png";
     GameMap* map = new GameMap(path_map);
 
+    std::string path_airplane = "../../pic/friend_fighter.png";
+    
+    Creator *creator = new Creator();
 
     while (window.isOpen()) 
     {
         for(auto event = sf::Event(); window.pollEvent(event);){if (event.type == sf::Event::Closed) {window.close();}} // Проверяем закрытие
 
         map->displayMap(window);
+
         window.display();
     }
     return 0;
