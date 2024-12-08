@@ -23,3 +23,5 @@ void moveSprite(sf::Sprite& sprite) {
         sprite.move(5.f, 0.f);   // Изменение координаты X
     }
 }
+
+
