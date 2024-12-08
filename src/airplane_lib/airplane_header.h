@@ -1,5 +1,5 @@
-#ifndef game_map
-#define game_map
+#ifndef airplane_lib
+#define airplane_lib
 
 #include <SFML/Graphics.hpp>
 #include <string>
