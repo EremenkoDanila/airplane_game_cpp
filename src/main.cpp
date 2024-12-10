@@ -28,6 +28,7 @@ int main() {
 
         map->displayMap(window);
         airplane->display(window);
+        airplane->moveSprite();
         window.display();
     }
     creator->remove_airplane_friend(airplane);
