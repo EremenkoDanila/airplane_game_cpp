@@ -24,7 +24,9 @@ void moveSprite(sf::Sprite& sprite) {
     }
 }
 
+airplane_friend::airplane_friend() {}
 
+airplane_friend::~airplane_friend() {}
 
     // Конструктор с параметрами
    airplane_friend::airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position) 
@@ -50,6 +52,8 @@ void moveSprite(sf::Sprite& sprite) {
         sprite.setPosition(position);
     }
 
+void airplane_friend::moveSprite(sf::Sprite& sprite) {}
+
 
 void airplane_friend:: display(sf::RenderWindow& window) {;
     window.draw(sprite);
@@ -60,3 +64,17 @@ air_vehicles::~air_vehicles() {}
 
 // Реализация деструктора для класса Creator
 Creator::~Creator() {}
+Creator::Creator() {}
+
+
+
+ConcreteCreator::ConcreteCreator() {}
+
+ConcreteCreator::~ConcreteCreator() {}
+
+air_vehicles* ConcreteCreator::creat_airplane_friend(int hp_, int speed_, const std::string& texturePath,const sf::Vector2f& position) 
+{
+  return new airplane_friend(hp_, speed_, texturePath, position);
+}
+
+void ConcreteCreator::remove_airplane_friend(air_vehicles* airplane) {}
