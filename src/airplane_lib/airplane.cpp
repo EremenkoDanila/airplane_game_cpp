@@ -1,25 +1,27 @@
 #include "airplane_header.h"
 
 void moveSprite_all(sf::Sprite& sprite, int speed) {
-    
+    //переделать под длину 
+    sf::Vector2f position = sprite.getPosition();
     // Получаем состояние клавиш
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) and (position.y > 0 )) {
         // Перемещаем спрайт вверх
         sprite.move(0.f, -speed);  // Изменение координаты Y
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) and (position.y < 650 )) 
+    {
         // Перемещаем спрайт вниз
         sprite.move(0.f,speed);   // Изменение координаты Y
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) and (position.x > -50 )) {
         // Перемещаем спрайт влево
         sprite.move(-speed, 0.f);  // Изменение координаты X
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) and (position.x < 1600 )) {
         // Перемещаем спрайт вправо
         sprite.move(speed, 0.f);   // Изменение координаты X
     }
-
+    
 }
 
 
@@ -47,10 +49,17 @@ void moveSprite_all(sf::Sprite& sprite, int speed) {
         sprite.setPosition(position);
     }
 
-void airplane_friend::moveSprite(
-    //int test
-    ) {
-    ::moveSprite_all(sprite, speed); 
+void airplane_friend::moveSprite() {
+    ::moveSprite_all(sprite, speed);
+        bool isSpeedUp = true; 
+        bool isSlowDown = true; 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+        // Перемещаем спрайт вправо
+        speed = 15;
+        isSpeedUp = false; 
+    }
+    // сделать откат по времени 
+    if (speed > 5){speed -=0.01;}
 }
 
 
