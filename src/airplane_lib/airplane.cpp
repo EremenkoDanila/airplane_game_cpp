@@ -1,23 +1,25 @@
 #include "airplane_header.h"
 
-void moveSprite(sf::Sprite& sprite) {
+void moveSprite_all(sf::Sprite& sprite, int speed) {
+    
     // Получаем состояние клавиш
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         // Перемещаем спрайт вверх
-        sprite.move(0.f, -5.f);  // Изменение координаты Y
+        sprite.move(0.f, -speed);  // Изменение координаты Y
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         // Перемещаем спрайт вниз
-        sprite.move(0.f, 5.f);   // Изменение координаты Y
+        sprite.move(0.f,speed);   // Изменение координаты Y
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         // Перемещаем спрайт влево
-        sprite.move(-5.f, 0.f);  // Изменение координаты X
+        sprite.move(-speed, 0.f);  // Изменение координаты X
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         // Перемещаем спрайт вправо
-        sprite.move(5.f, 0.f);   // Изменение координаты X
+        sprite.move(speed, 0.f);   // Изменение координаты X
     }
+
 }
 
 
@@ -45,8 +47,10 @@ void moveSprite(sf::Sprite& sprite) {
         sprite.setPosition(position);
     }
 
-void airplane_friend::moveSprite() {
-    ::moveSprite(sprite); 
+void airplane_friend::moveSprite(
+    //int test
+    ) {
+    ::moveSprite_all(sprite, speed); 
 }
 
 

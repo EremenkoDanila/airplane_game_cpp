@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 
-void moveSprite(sf::Sprite& sprite);
+void moveSprite_all(sf::Sprite& sprite, int);
 
 class air_vehicles{
     public:
@@ -16,8 +16,8 @@ class air_vehicles{
     virtual void setTexture(const std::string& texturePath) = 0;
     virtual void setPosition(const sf::Vector2f& position) = 0;
 
+    //virtual void moveSprite(int)=0;
     virtual void moveSprite()=0;
-    //virtual void moveSprite(sf::Sprite& sprite) = 0;
     virtual void display(sf::RenderWindow& window) = 0;
 };
 
@@ -40,8 +40,8 @@ class airplane_friend : public air_vehicles{
     void setTexture(const std::string& texturePath);
     void setPosition(const sf::Vector2f& position);
 
+    //void moveSprite(int);
     void moveSprite();
-    //void moveSprite(sf::Sprite& sprite);
     void display(sf::RenderWindow& window);
 
 };
