@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 
+
 void moveSprite_all(sf::Sprite& sprite, int);
 
 class air_vehicles{
@@ -29,6 +30,7 @@ class airplane_friend : public air_vehicles{
 
     sf::Sprite sprite;    
     sf::Texture texture; 
+    
 
     public:
     airplane_friend() {};
