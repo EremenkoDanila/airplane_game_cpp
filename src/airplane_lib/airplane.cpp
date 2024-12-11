@@ -4,7 +4,7 @@ void moveSprite_all(sf::Sprite& sprite, int speed) {
     //переделать под длину 
     sf::Vector2f position = sprite.getPosition();
     // Получаем состояние клавиш
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) and (position.y > -10 )) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) and (position.y > -10    )) {
         // Перемещаем спрайт вверх
         sprite.move(0.f, -speed);  // Изменение координаты Y
     }
@@ -61,6 +61,10 @@ void airplane_friend::moveSprite() {
     }
     // сделать откат по времени 
     if (speed > 5){speed -=0.01;}
+
+    //sf::Vector2u size = texture.getSize();
+    //unsigned int width = size.x;
+    //unsigned int height = size.y;
 }
 
 
