@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-void moveSprite_all(sf::Sprite& sprite, int);
+void moveSprite_all(sf::Sprite&, int,sf::Vector2u);
 
 class air_vehicles{
     public:
@@ -17,6 +17,8 @@ class air_vehicles{
     virtual void setTexture(const std::string& texturePath) = 0;
     virtual void setPosition(const sf::Vector2f& position) = 0;
 
+
+    virtual const sf::Texture& getTexture()=0;
     //virtual void moveSprite(int)=0;
     virtual void moveSprite()=0;
     virtual void display(sf::RenderWindow& window) = 0;
@@ -42,6 +44,7 @@ class airplane_friend : public air_vehicles{
     void setTexture(const std::string& texturePath);
     void setPosition(const sf::Vector2f& position);
 
+    const sf::Texture& getTexture();
     //void moveSprite(int);
     void moveSprite();
     void display(sf::RenderWindow& window);
