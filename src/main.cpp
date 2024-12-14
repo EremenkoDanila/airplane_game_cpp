@@ -23,7 +23,22 @@ int main() {
 
     std::string path_airplane = "../../pic/friend_fighter.png";
     Creator* creator = new ConcreteCreator();
-    air_vehicles* airplane = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(960, 540),window_width,window_height);
+    air_vehicles* airplane =  creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(960, 540),window_width,window_height);
+    air_vehicles* airplane1 = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(900, 500),window_width,window_height);
+    air_vehicles* airplane2 = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(850, 450),window_width,window_height);
+    air_vehicles* airplane3=  creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(800, 400),window_width,window_height);
+    air_vehicles* airplane4 = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(750, 350),window_width,window_height);
+    air_vehicles* airplane5 = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(700, 300),window_width,window_height);
+
+     ImageEditor editor;
+
+     editor.addObject(airplane1);
+     editor.addObject(airplane);
+     editor.addObject(airplane2);
+     editor.addObject(airplane3);
+     editor.addObject(airplane4);
+     editor.addObject(airplane5);
+
 
     //const sf::Texture& texture1 = airplane->getTexture();
     //std::cout<<texture1.getSize().x<<' '<<texture1.getSize().y<<std::endl;
@@ -34,8 +49,14 @@ int main() {
         for(auto event = sf::Event(); window.pollEvent(event);){if (event.type == sf::Event::Closed) {window.close();}} // Проверяем закрытие
 
         map->displayMap(window);
-        airplane->display(window);
-        airplane->moveSprite();
+        //airplane->display(window);
+        //airplane->moveSprite();
+        
+
+        editor.renderAllObjects(window);
+        editor.moveAllObjects();
+
+
         window.display();
     }
     std:: cout<<"Stage of objects removal"<<std::endl;

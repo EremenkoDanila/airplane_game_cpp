@@ -101,3 +101,54 @@ ConcreteCreator::~ConcreteCreator(){
 
 
 
+//----------------------------------------------------------------------------
+
+
+
+    ImageEditor::ImageEditor() {}
+    ImageEditor::~ImageEditor() {
+        for (auto object : objects) {
+            delete object;
+        }
+    }
+
+    // Метод для добавления нового объекта
+    void ImageEditor::addObject(air_vehicles* object) {
+        objects.push_back(object);
+    }
+
+    // Метод для удаления объекта
+    void ImageEditor::removeObject(air_vehicles* object) {
+        auto it = std::find(objects.begin(), objects.end(), object);
+        if (it != objects.end()) {
+            delete *it;
+            objects.erase(it);
+        }
+    }
+
+    // Метод для перемещения всех объектов
+    void ImageEditor::moveAllObjects() {
+        for (auto object : objects) {
+            object->moveSprite();
+        }
+    }
+
+    // Метод для изменения скорости всех объектов
+    void ImageEditor::changeSpeedOfAllObjects(int newSpeed) {
+        for (auto object : objects) {
+            object->set_speed(newSpeed);
+        }
+    }
+
+    // Метод для отображения всех объектов
+    void ImageEditor::renderAllObjects(sf::RenderWindow& window) {
+        for (auto object : objects) {
+            object->display(window);
+        }
+    }
+
+
+
+    ImageEditor::ImageEditor(int number_of_plane){
+        
+    }
