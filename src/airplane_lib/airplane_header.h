@@ -109,7 +109,8 @@ class Composite {
     virtual void moveAllObjects()=0;
     virtual void changeSpeedOfAllObjects(int newSpeed)=0;
     virtual void renderAllObjects(sf::RenderWindow& window)=0;
-        
+    virtual void shootAllObjects() = 0;
+    virtual void updateShootingForAllObjects(sf::RenderWindow& window) = 0;    
 };
 
 
@@ -128,8 +129,8 @@ class Component : public Composite {
     void moveAllObjects() override;
     void changeSpeedOfAllObjects(int newSpeed) override;
     void renderAllObjects(sf::RenderWindow& window) override;
-    void shootAllObjects();
-    void updateShootingForAllObjects(sf::RenderWindow& window);
+    void shootAllObjects() override;
+    void updateShootingForAllObjects(sf::RenderWindow& window) override;
 };
 
 
