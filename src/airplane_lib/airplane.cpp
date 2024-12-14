@@ -27,6 +27,7 @@ void moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size,unsigned in
     }
 }
 
+//-------------------------------------
 
 sf::Vector2f airplane_friend::getPosition() {
     return sprite.getPosition();
@@ -39,15 +40,22 @@ airplane_friend::airplane_friend() : shooting("../../pic/bullet.png", 10.f) {
 
 
     // Конструктор с параметрами
-airplane_friend::airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) : shooting("../../pic/bullet.png", 10.f) {
+
+airplane_friend::airplane_friend(char flg, int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) : shooting("../../pic/bullet.png", 10.f) {
     this->hp = hp_;
     this->speed = speed_;
     this->window_width=window_width;
     this->window_height=window_height;
     setTexture(texturePath);
     setPosition(position);
-    sprite.rotate(90);
-    sprite.scale(0.5f, 0.5f);
+    if (flg == 'f') {
+        sprite.rotate(90);
+        sprite.scale(0.5f, 0.5f);
+    }
+    if(flg == 'e') {
+        sprite.rotate(-90);
+        sprite.scale(0.2f, 0.2f);
+    }
     std::cout<<"the airplane_friend was created"<<std::endl;
 }
 
@@ -93,15 +101,50 @@ void airplane_friend:: display(sf::RenderWindow& window) {;
     window.draw(sprite);
 }
 
+
+
+
+
+
 const sf::Texture& airplane_friend::getTexture(){
     return texture;
 }
 
 
-air_vehicles* ConcreteCreator::creat_airplane_friend(int hp_, int speed_, const std::string& texturePath,const sf::Vector2f& position,unsigned int window_width, unsigned int window_height) {
-    std::cout<<"the ConcreteCreator is trying to  created a airplane_friend"<<std::endl;
-     return new airplane_friend(hp_, speed_, texturePath, position, window_width,window_height);
+void airplane_friend::moveSprite(std::vector<char> mass_for_move,int now)
+{
+    int speed_tmp = this->speed;
+    if (static_cast<int>(mass_for_move.size()) > now)
+    {
+        char tmp = mass_for_move[now];
+         switch(tmp) {
+            case 'w':
+                sprite.move(0.f, -speed_tmp);  // Изменение координаты Y вверх
+                break;
+            case 's':
+                sprite.move(0.f, speed_tmp);   // Изменение координаты Y вниз
+                break;
+            case 'a':
+                sprite.move(-speed_tmp, 0.f);  // Изменение координаты X влево
+                break;
+            case 'd':
+                sprite.move(speed_tmp, 0.f);   // Изменение координаты X вправо
+                break;
+            default:
+                break;
+        }
+    }
+
 }
+
+//-----------------------------------------
+
+
+air_vehicles* ConcreteCreator::creat_airplane_friend(char flg, int hp_, int speed_, const std::string& texturePath,const sf::Vector2f& position,unsigned int window_width, unsigned int window_height) {
+    std::cout<<"the ConcreteCreator is trying to  created a airplane_friend"<<std::endl;
+     return new airplane_friend(flg, hp_, speed_, texturePath, position, window_width,window_height);
+}
+
 
 void ConcreteCreator::remove_airplane_friend(air_vehicles* airplane) {
     delete airplane;
@@ -147,6 +190,14 @@ ConcreteCreator::~ConcreteCreator(){
     void Component::moveAllObjects() {
         for (auto object : objects) {
             object->moveSprite();
+        }
+    }
+
+
+    
+    void Component::moveAllObjects(std::vector<char> mass_for_move,int now) {
+        for (auto object : objects) {
+            object->moveSprite(mass_for_move, now);
         }
     }
 

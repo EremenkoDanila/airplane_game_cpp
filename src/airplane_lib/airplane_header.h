@@ -29,6 +29,7 @@ class air_vehicles{
     virtual sf::Vector2f getPosition() = 0; // Новый метод для получения позиции
     //virtual void moveSprite(int)=0;
     virtual void moveSprite()=0;
+    virtual void moveSprite(std::vector<char> mass_for_move, int now )=0;
     virtual void display(sf::RenderWindow& window) = 0;
     virtual void shoot() = 0; // Стрельба
     virtual void updateShooting(sf::RenderWindow& window) = 0; // Обновление снарядов
@@ -52,7 +53,7 @@ class airplane_friend : public air_vehicles{
     airplane_friend();
     ~airplane_friend() override = default;
     airplane_friend(
-                        int hp_, int speed_, const std::string& texturePath, 
+                        char flg, int hp_, int speed_, const std::string& texturePath, 
                         const sf::Vector2f& position,  unsigned int window_width,
                          unsigned int window_height
                      );
@@ -68,17 +69,22 @@ class airplane_friend : public air_vehicles{
     sf::Vector2f getPosition() override; // Реализация нового метода
     //void moveSprite(int);
     void moveSprite();
+    void moveSprite(std::vector<char> mass_for_move,  int now) override;
     void display(sf::RenderWindow& window);
     void shoot() override; // Реализация стрельбы
     void updateShooting(sf::RenderWindow& window) override; // Обновление снарядов
 };
 
 
+
+
+
 class Creator{
     public:
     Creator(){};
     virtual ~Creator(){};
-    virtual air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height)=0;
+    virtual air_vehicles *creat_airplane_friend(char flg, int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height)=0;
+    //virtual air_vehicles *creat_airplane_enemie()=0;
     virtual void remove_airplane_friend(air_vehicles *airplane)=0;
 };
 
@@ -86,7 +92,8 @@ class ConcreteCreator : public Creator{
     public:
     ConcreteCreator();
     ~ConcreteCreator() override;
-    air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) override;
+    air_vehicles *creat_airplane_friend(char flg, int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) override;
+   //air_vehicles * creat_airplane_enemie();
     void remove_airplane_friend(air_vehicles *airplane) override;
 };
 
@@ -107,6 +114,7 @@ class Composite {
     virtual void addObject(air_vehicles* object)=0;
     virtual void removeObject(air_vehicles* object)=0;
     virtual void moveAllObjects()=0;
+    virtual void moveAllObjects(std::vector<char> mass_for_move, int now)=0;
     virtual void changeSpeedOfAllObjects(int newSpeed)=0;
     virtual void renderAllObjects(sf::RenderWindow& window)=0;
     virtual void shootAllObjects() = 0;
@@ -127,6 +135,7 @@ class Component : public Composite {
     void addObject(air_vehicles* object) override;
     void removeObject(air_vehicles* object) override;
     void moveAllObjects() override;
+    void moveAllObjects(std::vector<char> mass_for_move, int now) override;
     void changeSpeedOfAllObjects(int newSpeed) override;
     void renderAllObjects(sf::RenderWindow& window) override;
     void shootAllObjects() override;
