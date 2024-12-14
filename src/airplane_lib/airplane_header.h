@@ -76,4 +76,47 @@ class ConcreteCreator : public Creator{
 };
 
 
+
+
+
+
+
+
+
+
+
+class CompoundGraphic : public air_vehicles {
+    private:
+        std::vector<air_vehicles*> airplane_friend;
+    public:
+        CompoundGraphic();
+        ~CompoundGraphic();
+        void add(air_vehicles *airplane);
+        void remove(air_vehicles *airplane);
+        void display(sf::RenderWindow& window);
+        
+};
+
+
+
+
+class ImageEditor {
+    private:
+    std::vector<air_vehicles*> objects; 
+
+    public:
+    ImageEditor();
+    ImageEditor(int number_of_plane);
+    ~ImageEditor();
+    void addObject(air_vehicles* object);
+    void removeObject(air_vehicles* object);
+    void moveAllObjects();
+    void changeSpeedOfAllObjects(int newSpeed);
+    void renderAllObjects(sf::RenderWindow& window);
+};
+
+
+
+
+
 #endif
