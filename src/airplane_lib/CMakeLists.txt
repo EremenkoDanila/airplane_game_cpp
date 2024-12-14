@@ -22,10 +22,23 @@ set(${project}_SOURCE_LIST
         ${${project}_SOURCES}
         ${${project}_HEADERS})
 
-# Создаем статическую библиотеку
-add_library(${project}
-        STATIC
-        ${${project}_SOURCE_LIST})
+# Создаём статическую библиотеку airplane_lib
+add_library(${project} STATIC ${${project}_SOURCE_LIST})
 
-# Связываем библиотеку с SFML
-target_link_libraries(${project} PRIVATE sfml-graphics sfml-window sfml-system)
+# Добавляем поддиректорию для стрельбы
+add_subdirectory(shooting_lib)
+
+# Указываем зависимости для airplane_lib
+target_link_libraries(${project} 
+    PRIVATE 
+        sfml-graphics 
+        sfml-window 
+        sfml-system 
+        shooting_lib
+)
+
+# Указываем, где искать заголовочные файлы
+target_include_directories(${project}
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+           ${CMAKE_CURRENT_SOURCE_DIR}/shooting_lib
+)
