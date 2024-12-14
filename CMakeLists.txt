@@ -9,7 +9,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/font/Sansation-Regular.ttf
                ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 
 # Подключаем картинки                
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pic/plane.png
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pic/friend_fighter.png
                ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 
 

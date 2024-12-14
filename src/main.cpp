@@ -8,55 +8,65 @@
 #include <thread>
 #include <string>
 
+const unsigned int window_width = 1920;
+const unsigned int window_height = 1080;
 
 int main() {
     while (true)
     {
+    
 
-    auto window = sf::RenderWindow({1920u, 1080u}, "CMake SFML Project");
+    auto window = sf::RenderWindow({window_width, window_height}, "CMake SFML Project");
     window.setFramerateLimit(144);
 
     std::string path_map = "../../pic/map.png";
-    GameMap* map = new GameMap(path_map);
+    GameMap* map = new GameMap(path_map,window_width,window_height);
 
     std::string path_airplane = "../../pic/friend_fighter.png";
     Creator* creator = new ConcreteCreator();
-    air_vehicles* airplane = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(960, 540));
+    Composite* editor = new Component();
+
+    air_vehicles* airplane  = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(960, 540),window_width,window_height);
+    air_vehicles* airplane1 = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(900, 500),window_width,window_height);
+    air_vehicles* airplane2 = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(850, 450),window_width,window_height);
+    air_vehicles* airplane3 = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(800, 400),window_width,window_height);
+    air_vehicles* airplane4 = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(750, 350),window_width,window_height);
+    air_vehicles* airplane5 = creator->creat_airplane_friend(100, 7, path_airplane, sf::Vector2f(700, 300),window_width,window_height);
+
+
+
+     editor->addObject(airplane);
+     editor->addObject(airplane1);
+     editor->addObject(airplane2);
+     editor->addObject(airplane3);
+     editor->addObject(airplane4);
+     editor->addObject(airplane5);
+
+
     //const sf::Texture& texture1 = airplane->getTexture();
     //std::cout<<texture1.getSize().x<<' '<<texture1.getSize().y<<std::endl;
-
-    // Создание объекта стрельбы
-    Shooting shooting("../../pic/bullet.png", 10.f);
-
+    std::cout<<"All objects created"<<std::endl;
+    std::cout<<"Make some actions"<<std::endl;
     while (window.isOpen()) 
     {
-        sf::Event event;
-        while(window.pollEvent(event)){
-            if (event.type == sf:: Event::Closed){
-                window.close();
-            }
-            if (event.type == sf::Event::KeyPressed) {
-            if (event.key.code == sf::Keyboard::Space) {
-                shooting.setStrategy(std::make_unique<SingleShotStrategy>());
-                shooting.shoot(airplane->getPosition());
-            } else if (event.key.code == sf::Keyboard::LShift) {
-                shooting.setStrategy(std::make_unique<MultiShotStrategy>());
-                shooting.shoot(airplane->getPosition());
-            }
-        }
-        }
-         // Переключение стратегии (Shift для залпа, Space для одиночного выстрела)
-        
-        
-
+        for(auto event = sf::Event(); window.pollEvent(event);){if (event.type == sf::Event::Closed) {window.close();}} // Проверяем закрытие
 
         map->displayMap(window);
-        airplane->display(window);
-        airplane->moveSprite();
-        shooting.update(window);
+        //airplane->display(window);
+        //airplane->moveSprite();
+        
+
+        editor->renderAllObjects(window);
+        editor->moveAllObjects();
+
+
         window.display();
     }
+    std:: cout<<"Stage of objects removal"<<std::endl;
     creator->remove_airplane_friend(airplane);
+    delete creator;
+    delete map;
+    std::cout <<"Close this program"<<std::endl;
     return 0;
     }
 }
