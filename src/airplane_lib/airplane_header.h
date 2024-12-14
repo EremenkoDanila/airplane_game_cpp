@@ -6,7 +6,14 @@
 #include <iostream>
 
 
+
+
+
 void moveSprite_all(sf::Sprite&, int,sf::Vector2u,unsigned int window_width,unsigned int window_height);
+
+
+
+
 
 class air_vehicles{
     public:
@@ -85,34 +92,34 @@ class ConcreteCreator : public Creator{
 
 
 
-class CompoundGraphic : public air_vehicles {
-    private:
-        std::vector<air_vehicles*> airplane_friend;
+class Composite {
     public:
-        CompoundGraphic();
-        ~CompoundGraphic();
-        void add(air_vehicles *airplane);
-        void remove(air_vehicles *airplane);
-        void display(sf::RenderWindow& window);
+    Composite(){};
+    virtual ~Composite(){};
+    virtual void addObject(air_vehicles* object)=0;
+    virtual void removeObject(air_vehicles* object)=0;
+    virtual void moveAllObjects()=0;
+    virtual void changeSpeedOfAllObjects(int newSpeed)=0;
+    virtual void renderAllObjects(sf::RenderWindow& window)=0;
         
 };
 
 
 
 
-class ImageEditor {
+class Component : public Composite {
     private:
     std::vector<air_vehicles*> objects; 
 
     public:
-    ImageEditor();
-    ImageEditor(int number_of_plane);
-    ~ImageEditor();
-    void addObject(air_vehicles* object);
-    void removeObject(air_vehicles* object);
-    void moveAllObjects();
-    void changeSpeedOfAllObjects(int newSpeed);
-    void renderAllObjects(sf::RenderWindow& window);
+    Component();
+    Component(int number_of_plane);
+    ~Component();
+    void addObject(air_vehicles* object) override;
+    void removeObject(air_vehicles* object) override;
+    void moveAllObjects() override;
+    void changeSpeedOfAllObjects(int newSpeed) override;
+    void renderAllObjects(sf::RenderWindow& window) override;
 };
 
 
