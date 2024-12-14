@@ -6,20 +6,20 @@ void moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size) {
     //переделать под длину 
     sf::Vector2f position = sprite.getPosition();
     // Получаем состояние клавиш
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) and (position.y > 0 )) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && (position.y > 0 )) {
         // Перемещаем спрайт вверх
         sprite.move(0.f, -speed);  // Изменение координаты Y
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) and (position.y < 1000-(height/2))) 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && (position.y < 1000-(height/2))) 
     {
         // Перемещаем спрайт вниз
         sprite.move(0.f,speed);   // Изменение координаты Y
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) and (position.x > (width/2) )) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && (position.x > (width/2) )) {
         // Перемещаем спрайт влево
         sprite.move(-speed, 0.f);  // Изменение координаты X
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) and (position.x < 1900 )) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && (position.x < 1900 )) {
         // Перемещаем спрайт вправо
         sprite.move(speed, 0.f);   // Изменение координаты X
     }
