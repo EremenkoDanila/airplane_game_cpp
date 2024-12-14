@@ -1,6 +1,6 @@
 #include "airplane_header.h"
 
-void moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size) {
+void moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size,unsigned int window_width,unsigned int window_height) {
     int width = size.x;
     int height = size.y;
     //переделать под длину 
@@ -10,7 +10,7 @@ void moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size) {
         // Перемещаем спрайт вверх
         sprite.move(0.f, -speed);  // Изменение координаты Y
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) and (position.y < 1000-(height/2))) 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) and (position.y < (window_height-(window_height*0.01))-(height/2))) 
     {
         // Перемещаем спрайт вниз
         sprite.move(0.f,speed);   // Изменение координаты Y
@@ -19,22 +19,28 @@ void moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size) {
         // Перемещаем спрайт влево
         sprite.move(-speed, 0.f);  // Изменение координаты X
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) and (position.x < 1900 )) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) and (position.x < (window_width-(window_width*0.01)) )) {
         // Перемещаем спрайт вправо
         sprite.move(speed, 0.f);   // Изменение координаты X
     }
     
 }
 
+airplane_friend::airplane_friend(){
+    std::cout<<"the airplane_friend was created without some parametrs"<<std::endl;
+}
 
     // Конструктор с параметрами
-airplane_friend::airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position){
+airplane_friend::airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height){
     this->hp = hp_;
     this->speed = speed_;
+    this->window_width=window_width;
+    this->window_height=window_height;
     setTexture(texturePath);
     setPosition(position);
     sprite.rotate(90);
     sprite.scale(0.5f, 0.5f);
+    std::cout<<"the airplane_friend was created"<<std::endl;
 }
 
 
@@ -52,7 +58,7 @@ void airplane_friend::setPosition(const sf::Vector2f& position) {
 }
 
 void airplane_friend::moveSprite() {
-    ::moveSprite_all(sprite, speed, texture.getSize());
+    ::moveSprite_all(sprite, speed, texture.getSize(), window_width, window_height);
 
     bool isSpeedUp = true; 
     bool isSlowDown = true; 
@@ -75,14 +81,23 @@ const sf::Texture& airplane_friend::getTexture(){
 }
 
 
-air_vehicles* ConcreteCreator::creat_airplane_friend(int hp_, int speed_, const std::string& texturePath,const sf::Vector2f& position) {
-  return new airplane_friend(hp_, speed_, texturePath, position);
+air_vehicles* ConcreteCreator::creat_airplane_friend(int hp_, int speed_, const std::string& texturePath,const sf::Vector2f& position,unsigned int window_width, unsigned int window_height) {
+    std::cout<<"the ConcreteCreator is trying to  created a airplane_friend"<<std::endl;
+     return new airplane_friend(hp_, speed_, texturePath, position, window_width,window_height);
 }
 
 void ConcreteCreator::remove_airplane_friend(air_vehicles* airplane) {
     delete airplane;
+    std::cout<<"the airplane_friend was deleted"<<std::endl;
 }
 
+ConcreteCreator::ConcreteCreator(){
+    std::cout<<"the ConcreteCreator was created"<<std::endl;
+}
+
+ConcreteCreator::~ConcreteCreator(){
+    std::cout<<"the ConcreteCreator was deleted"<<std::endl;
+}
 
 
 

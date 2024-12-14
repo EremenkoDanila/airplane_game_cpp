@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-void moveSprite_all(sf::Sprite&, int,sf::Vector2u);
+void moveSprite_all(sf::Sprite&, int,sf::Vector2u,unsigned int window_width,unsigned int window_height);
 
 class air_vehicles{
     public:
@@ -33,11 +33,18 @@ class airplane_friend : public air_vehicles{
     sf::Sprite sprite;    
     sf::Texture texture; 
     
+     unsigned int window_width;
+     unsigned int window_height;
 
     public:
-    airplane_friend() {};
+    airplane_friend();
     ~airplane_friend() {};
-    airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position);
+    airplane_friend(
+                        int hp_, int speed_, const std::string& texturePath, 
+                        const sf::Vector2f& position,  unsigned int window_width,
+                         unsigned int window_height
+                     );
+
     void set_hp(int hp_) {hp = hp_;}
     void set_speed(int speed_)  { speed= speed_;} 
 
@@ -56,15 +63,15 @@ class Creator{
     public:
     Creator(){};
     virtual ~Creator(){};
-    virtual air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position)=0;
+    virtual air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height)=0;
     virtual void remove_airplane_friend(air_vehicles *airplane)=0;
 };
 
 class ConcreteCreator : public Creator{
     public:
-    ConcreteCreator() {};
-    ~ConcreteCreator() override {};
-    air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position) override;
+    ConcreteCreator();
+    ~ConcreteCreator() override;
+    air_vehicles *creat_airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) override;
     void remove_airplane_friend(air_vehicles *airplane) override;
 };
 
