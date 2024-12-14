@@ -42,6 +42,7 @@ int main() {
      editor->addObject(airplane4);
      editor->addObject(airplane5);
 
+    sf::Event event;
 
     //const sf::Texture& texture1 = airplane->getTexture();
     //std::cout<<texture1.getSize().x<<' '<<texture1.getSize().y<<std::endl;
@@ -49,8 +50,10 @@ int main() {
     std::cout<<"Make some actions"<<std::endl;
     while (window.isOpen()) 
     {
-        sf::Event event;
-        while (window.pollEvent(event)) {
+
+        
+        while (window.pollEvent(event))
+         {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
@@ -58,6 +61,7 @@ int main() {
                 editor->shootAllObjects(); // Все объекты начинают стрелять при нажатии Space
             }
         }
+
 
         map->displayMap(window);
         //airplane->display(window);
