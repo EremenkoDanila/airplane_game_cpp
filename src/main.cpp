@@ -55,6 +55,7 @@ int main() {
      editor->addObject(airplane4);
      editor->addObject(airplane5);
 
+
     sf::Event event;
 
     //const sf::Texture& texture1 = airplane->getTexture();
@@ -63,23 +64,28 @@ int main() {
     std::cout<<"Make some actions"<<std::endl;
     while (window.isOpen()) 
     {
-            while (window.pollEvent(event))
-        {
-                if (event.type == sf::Event::Closed) {
-                     window.close();
-                }
-                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-                     editor->shootAllObjects(); // Все объекты начинают стрелять при нажатии Space
-                    }
- }
+
+        
+        while (window.pollEvent(event))
+         {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
+                editor2->shootAllObjects(); // Все объекты начинают стрелять при нажатии Space
+                editor->shootAllObjects(); // Все объекты начинают стрелять при нажатии Space
+            }
+        }
+
 
         map->displayMap(window);
-        //airplane->display(window);
-        //airplane->moveSprite();
         
+        editor2->renderAllObjects(window);
+        editor2->moveAllObjects();
+        editor2->updateShootingForAllObjects(window);
+
 
         editor->renderAllObjects(window);
-        //std::this_thread::sleep_for(std::chrono::milliseconds(1));
         if (now < static_cast<int>(mass_for_move.size())){
             editor->moveAllObjects(mass_for_move, now);
             now++;
@@ -88,10 +94,9 @@ int main() {
         {
             now = 0;
         }
+        editor->updateShootingForAllObjects(window);
         
-        editor2->renderAllObjects(window);
-        editor2->moveAllObjects();
-    
+
         window.display();
     }
     std:: cout<<"Stage of objects removal"<<std::endl;
