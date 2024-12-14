@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SFML_DIR "../../build/_deps/sfml-src/include/SFML")
 
+
 # Определяем источники и заголовочные файлы
 set(${project}_SOURCES
         airplane.cpp)
