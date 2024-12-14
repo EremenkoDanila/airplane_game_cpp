@@ -49,7 +49,15 @@ int main() {
     std::cout<<"Make some actions"<<std::endl;
     while (window.isOpen()) 
     {
-        for(auto event = sf::Event(); window.pollEvent(event);){if (event.type == sf::Event::Closed) {window.close();}} // Проверяем закрытие
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
+                editor->shootAllObjects(); // Все объекты начинают стрелять при нажатии Space
+            }
+        }
 
         map->displayMap(window);
         //airplane->display(window);
@@ -58,7 +66,7 @@ int main() {
 
         editor->renderAllObjects(window);
         editor->moveAllObjects();
-
+        editor->updateShootingForAllObjects(window);
 
         window.display();
     }

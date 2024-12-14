@@ -33,13 +33,13 @@ sf::Vector2f airplane_friend::getPosition() {
     }  
 
 
-airplane_friend::airplane_friend(){
+airplane_friend::airplane_friend() : shooting("../../pic/bullet.png", 10.f) {
     std::cout<<"the airplane_friend was created without some parametrs"<<std::endl;
 }
 
 
     // Конструктор с параметрами
-airplane_friend::airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height){
+airplane_friend::airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) : shooting("../../pic/bullet.png", 10.f) {
     this->hp = hp_;
     this->speed = speed_;
     this->window_width=window_width;
@@ -51,6 +51,15 @@ airplane_friend::airplane_friend(int hp_, int speed_, const std::string& texture
     std::cout<<"the airplane_friend was created"<<std::endl;
 }
 
+    // Реализация метода стрельбы
+void airplane_friend::shoot() {
+    shooting.shoot(getPosition()); // Стрельба из текущей позиции самолёта
+}
+
+// Обновление снарядов
+void airplane_friend::updateShooting(sf::RenderWindow& window) {
+    shooting.update(window); // Обновление и отрисовка снарядов
+}
 
     // Установка текстуры и позиции
 void airplane_friend::setTexture(const std::string& texturePath) {
@@ -154,6 +163,21 @@ ConcreteCreator::~ConcreteCreator(){
             object->display(window);
         }
     }
+
+  // Стрельба для всех объектов
+    void Component::shootAllObjects() {
+        for (auto object : objects) {
+            object->shoot(); // Вызываем метод стрельбы для каждого объекта
+        }
+    }
+
+    // Обновление снарядов всех объектов
+    void Component::updateShootingForAllObjects(sf::RenderWindow& window) {
+        for (auto object : objects) {
+            object->updateShooting(window); // Обновляем снаряды для каждого объекта
+        }
+    }
+  
 
 
 
