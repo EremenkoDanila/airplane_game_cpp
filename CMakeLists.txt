@@ -32,7 +32,6 @@ FetchContent_MakeAvailable(SFML)
 # Подключаем директорию с библиотекой game_map
 add_subdirectory(src/game_map)
 add_subdirectory(src/airplane_lib)
-add_subdirectory(src/airplane_lib/shooting_lib)
 
 # Указываем список исходных файлов проекта
 set(PROJECT_SOURCE_LIST

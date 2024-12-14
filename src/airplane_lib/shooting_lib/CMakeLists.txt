@@ -1,28 +1,27 @@
-set(project "scooting_lib")
+cmake_minimum_required(VERSION 3.23)
+
+# Указываем название проекта
+set(project "shooting_lib")
 project(${project})
 
+set(SFML_DIR "../../build/_deps/sfml-src/include/SFML")
+# Устанавливаем стандарт C++
 set(CMAKE_CXX_STANDARD 17)
 
-# Ищем установленную библиотеку SFML
-#set(SFML_DIR ".*SFMLConfig\.cmake$"
-
-set(SFML_DIR "../../build/_deps/sfml-src/include/SFML")
-
-# Определяем источники и заголовочные файлы
+# Определяем исходные файлы и заголовки
 set(${project}_SOURCES
-        scootig.cpp)
+    shooting.cpp)
 
 set(${project}_HEADERS
-        scooting_header.h)
+    shooting_header.h)
 
-set(${project}_SOURCE_LIST
-        ${${project}_SOURCES}
-        ${${project}_HEADERS})
-
-# Создаем статическую библиотеку
-add_library(${project}
-        STATIC
-        ${${project}_SOURCE_LIST})
+# Создаём статическую библиотеку shooting_lib
+add_library(${project} STATIC ${${project}_SOURCES} ${${project}_HEADERS})
 
 # Связываем библиотеку с SFML
 target_link_libraries(${project} PRIVATE sfml-graphics sfml-window sfml-system)
+
+# Указываем, где искать заголовочные файлы
+target_include_directories(${project}
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+)

@@ -23,8 +23,11 @@ void moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size) {
         // Перемещаем спрайт вправо
         sprite.move(speed, 0.f);   // Изменение координаты X
     }
-    
 }
+
+sf::Vector2f airplane_friend::getPosition() {
+    return sprite.getPosition();
+    }  
 
 
     // Конструктор с параметрами

@@ -19,6 +19,7 @@ class air_vehicles{
 
 
     virtual const sf::Texture& getTexture()=0;
+    virtual sf::Vector2f getPosition() = 0; // Новый метод для получения позиции
     //virtual void moveSprite(int)=0;
     virtual void moveSprite()=0;
     virtual void display(sf::RenderWindow& window) = 0;
@@ -44,7 +45,9 @@ class airplane_friend : public air_vehicles{
     void setTexture(const std::string& texturePath);
     void setPosition(const sf::Vector2f& position);
 
+
     const sf::Texture& getTexture();
+    sf::Vector2f getPosition() override; // Реализация нового метода
     //void moveSprite(int);
     void moveSprite();
     void display(sf::RenderWindow& window);
