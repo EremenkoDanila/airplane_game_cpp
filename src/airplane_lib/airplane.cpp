@@ -34,14 +34,14 @@ sf::Vector2f airplane_friend::getPosition() {
     }  
 
 
-airplane_friend::airplane_friend() : shooting("../../pic/bullet.png", 10.f) {
+airplane_friend::airplane_friend() : shooting("../pic/bullet.png", 10.f) {
     std::cout<<"the airplane_friend was created without some parametrs"<<std::endl;
 }
 
 
     // Конструктор с параметрами
 
-airplane_friend::airplane_friend(char flg, int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) : shooting("../../pic/bullet.png", 10.f) {
+airplane_friend::airplane_friend(char flg, int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) : shooting("../pic/bullet.png", 10.f) {
     this->hp = hp_;
     this->speed = speed_;
     this->window_width=window_width;

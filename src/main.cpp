@@ -21,11 +21,11 @@ int main() {
     auto window = sf::RenderWindow({window_width, window_height}, "CMake SFML Project");
     window.setFramerateLimit(60);
 
-    std::string path_map = "../../pic/map.png";
+    std::string path_map = "../pic/map.png";
     GameMap* map = new GameMap(path_map,window_width,window_height);
 
-    std::string path_airplane = "../../pic/friend_fighter.png";
-    std::string path_hostile_fighter = "../../pic/hostile_fighter.png";
+    std::string path_airplane = "../pic/friend_fighter.png";
+    std::string path_hostile_fighter = "../pic/hostile_fighter.png";
     Creator* creator = new ConcreteCreator();
     Composite* editor = new Component();
     Composite* editor2 = new Component();
