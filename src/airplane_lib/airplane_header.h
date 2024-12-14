@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
-
+#include "shooting_lib/shooting_header.h"
 
 
 
@@ -31,6 +31,8 @@ class air_vehicles{
     virtual void moveSprite()=0;
     virtual void moveSprite(std::vector<char> mass_for_move, int now )=0;
     virtual void display(sf::RenderWindow& window) = 0;
+    virtual void shoot() = 0; // Стрельба
+    virtual void updateShooting(sf::RenderWindow& window) = 0; // Обновление снарядов
 };
 
 class airplane_friend : public air_vehicles{
@@ -45,9 +47,11 @@ class airplane_friend : public air_vehicles{
      unsigned int window_width;
      unsigned int window_height;
 
+    Shooting shooting;
+
     public:
     airplane_friend();
-    ~airplane_friend() {};
+    ~airplane_friend() override = default;
     airplane_friend(
                         char flg, int hp_, int speed_, const std::string& texturePath, 
                         const sf::Vector2f& position,  unsigned int window_width,
@@ -67,7 +71,8 @@ class airplane_friend : public air_vehicles{
     void moveSprite();
     void moveSprite(std::vector<char> mass_for_move,  int now) override;
     void display(sf::RenderWindow& window);
-
+    void shoot() override; // Реализация стрельбы
+    void updateShooting(sf::RenderWindow& window) override; // Обновление снарядов
 };
 
 
@@ -112,7 +117,8 @@ class Composite {
     virtual void moveAllObjects(std::vector<char> mass_for_move, int now)=0;
     virtual void changeSpeedOfAllObjects(int newSpeed)=0;
     virtual void renderAllObjects(sf::RenderWindow& window)=0;
-        
+    virtual void shootAllObjects() = 0;
+    virtual void updateShootingForAllObjects(sf::RenderWindow& window) = 0;    
 };
 
 
@@ -132,6 +138,8 @@ class Component : public Composite {
     void moveAllObjects(std::vector<char> mass_for_move, int now) override;
     void changeSpeedOfAllObjects(int newSpeed) override;
     void renderAllObjects(sf::RenderWindow& window) override;
+    void shootAllObjects() override;
+    void updateShootingForAllObjects(sf::RenderWindow& window) override;
 };
 
 
