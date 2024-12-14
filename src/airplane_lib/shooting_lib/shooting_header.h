@@ -4,6 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>
+#include <memory>
+   
+
 
 // Интерфейс стратегии стрельбы
 class ShootingStrategy {
