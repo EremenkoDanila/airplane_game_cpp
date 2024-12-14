@@ -10,6 +10,7 @@ void moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size,unsigned in
         // Перемещаем спрайт вверх
         sprite.move(0.f, -speed);  // Изменение координаты Y
     }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && (position.y < (window_height-(window_height*0.01))-(height/2))) 
     {
         // Перемещаем спрайт вниз
@@ -19,16 +20,23 @@ void moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size,unsigned in
         // Перемещаем спрайт влево
         sprite.move(-speed, 0.f);  // Изменение координаты X
     }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && (position.x < (window_width-(window_width*0.01)) )) {
         // Перемещаем спрайт вправо
         sprite.move(speed, 0.f);   // Изменение координаты X
     }
-    
 }
+
+
+sf::Vector2f airplane_friend::getPosition() {
+    return sprite.getPosition();
+    }  
+
 
 airplane_friend::airplane_friend(){
     std::cout<<"the airplane_friend was created without some parametrs"<<std::endl;
 }
+
 
     // Конструктор с параметрами
 airplane_friend::airplane_friend(int hp_, int speed_, const std::string& texturePath, const sf::Vector2f& position, unsigned int window_width, unsigned int window_height){

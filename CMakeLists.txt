@@ -33,7 +33,6 @@ FetchContent_MakeAvailable(SFML)
 add_subdirectory(src/game_map)
 add_subdirectory(src/airplane_lib)
 
-
 # Указываем список исходных файлов проекта
 set(PROJECT_SOURCE_LIST
     src/main.cpp

@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "game_map/game_header.h"
 #include "airplane_lib/airplane_header.h"
+#include "airplane_lib/shooting_lib/shooting_header.h"
 
 #include <iostream>
 #include <filesystem>
