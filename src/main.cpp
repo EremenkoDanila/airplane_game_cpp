@@ -26,7 +26,7 @@ int main() {
     //std::cout<<texture1.getSize().x<<' '<<texture1.getSize().y<<std::endl;
 
     // Создание объекта стрельбы
-    Shooting shooting("../../bullet/projectile.png", 10.f);
+    Shooting shooting("../../pic/bullet.png", 10.f);
 
     while (window.isOpen()) 
     {
