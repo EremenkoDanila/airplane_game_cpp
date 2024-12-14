@@ -105,20 +105,20 @@ ConcreteCreator::~ConcreteCreator(){
 
 
 
-    ImageEditor::ImageEditor() {}
-    ImageEditor::~ImageEditor() {
+    Component::Component() {}
+    Component::~Component() {
         for (auto object : objects) {
             delete object;
         }
     }
 
     // Метод для добавления нового объекта
-    void ImageEditor::addObject(air_vehicles* object) {
+    void Component::addObject(air_vehicles* object) {
         objects.push_back(object);
     }
 
     // Метод для удаления объекта
-    void ImageEditor::removeObject(air_vehicles* object) {
+    void Component::removeObject(air_vehicles* object) {
         auto it = std::find(objects.begin(), objects.end(), object);
         if (it != objects.end()) {
             delete *it;
@@ -127,21 +127,21 @@ ConcreteCreator::~ConcreteCreator(){
     }
 
     // Метод для перемещения всех объектов
-    void ImageEditor::moveAllObjects() {
+    void Component::moveAllObjects() {
         for (auto object : objects) {
             object->moveSprite();
         }
     }
 
     // Метод для изменения скорости всех объектов
-    void ImageEditor::changeSpeedOfAllObjects(int newSpeed) {
+    void Component::changeSpeedOfAllObjects(int newSpeed) {
         for (auto object : objects) {
             object->set_speed(newSpeed);
         }
     }
 
     // Метод для отображения всех объектов
-    void ImageEditor::renderAllObjects(sf::RenderWindow& window) {
+    void Component::renderAllObjects(sf::RenderWindow& window) {
         for (auto object : objects) {
             object->display(window);
         }
@@ -149,6 +149,6 @@ ConcreteCreator::~ConcreteCreator(){
 
 
 
-    ImageEditor::ImageEditor(int number_of_plane){
-        
+    Component::Component(int number_of_plane){
+
     }
