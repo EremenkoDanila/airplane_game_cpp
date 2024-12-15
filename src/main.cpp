@@ -3,6 +3,15 @@
 #include "airplane_lib/airplane_header.h"
 #include "airplane_lib/shooting_lib/shooting_header.h"
 
+
+#include "airplane_lib/airplane_friend.h"
+#include "airplane_lib/air_vehicles.h"
+#include "airplane_lib/Creator.h"
+#include "airplane_lib/ConcreteCreator.h"
+#include "airplane_lib/Component.h"
+#include "airplane_lib/Composite.h"
+
+
 #include <iostream>
 #include <filesystem>
 #include <thread>
