@@ -22,6 +22,9 @@ class airplane_friend : public air_vehicles{
      unsigned int window_width;
      unsigned int window_height;
 
+    void addObject(air_vehicles* object){};
+    void removeObject(air_vehicles* object){};
+
     Shooting shooting;
 
     public:
@@ -47,6 +50,10 @@ class airplane_friend : public air_vehicles{
     void display(sf::RenderWindow& window);
     void shoot() override; 
     void updateShooting(sf::RenderWindow& window) override; 
+
+
+
+ 
 };
 
 #endif // AIRPLANE_FRIEND_H

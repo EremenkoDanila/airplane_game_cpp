@@ -4,7 +4,7 @@
 #include "Creator.h"
 #include "ConcreteCreator.h"
 #include "Component.h"
-#include "Composite.h"
+
 
 void airplane::moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size,unsigned int window_width,unsigned int window_height) {
     int width = size.x;

@@ -9,28 +9,21 @@
 
 #include "air_vehicles.h"
 #include "Creator.h"
-#include "Composite.h"
 
 
-class Component : public Composite, public air_vehicles {
+class Component : public air_vehicles {
     private:
     std::vector<air_vehicles*> objects; 
 
     public:
+
     Component();
     Component(int number_of_plane);
     ~Component();
+        
     void addObject(air_vehicles* object) override;
     void removeObject(air_vehicles* object) override;
-    void moveAllObjects() override;
-    void moveAllObjects(std::vector<char> mass_for_move, int now) override;
-    void changeSpeedOfAllObjects(int newSpeed) override;
-    void renderAllObjects(sf::RenderWindow& window) override;
-    void shootAllObjects() override;
-    void updateShootingForAllObjects(sf::RenderWindow& window) override;
-
-
-
+    
 
      void set_hp(int hp_);
      void set_speed(int speed_);
