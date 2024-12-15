@@ -16,7 +16,7 @@ set(${project}_SOURCES
         airplane.cpp airplane_friend.cpp ConcreteCreator.cpp Component.cpp)
 
 set(${project}_HEADERS
-        airplane_header.h air_vehicles.h airplane_friend.h Creator.h ConcreteCreator.h Composite.h Component.h)
+        airplane_header.h air_vehicles.h airplane_friend.h Creator.h ConcreteCreator.h  Component.h)
 
 set(${project}_SOURCE_LIST
         ${${project}_SOURCES}

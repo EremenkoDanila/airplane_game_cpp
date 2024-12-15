@@ -9,7 +9,6 @@
 #include "airplane_lib/Creator.h"
 #include "airplane_lib/ConcreteCreator.h"
 #include "airplane_lib/Component.h"
-#include "airplane_lib/Composite.h"
 
 
 #include <iostream>
@@ -36,8 +35,8 @@ int main() {
     std::string path_airplane = "../pic/friend_fighter.png";
     std::string path_hostile_fighter = "../pic/hostile_fighter.png";
     Creator* creator = new ConcreteCreator();
-    Composite* editor = new Component();
-    Composite* editor2 = new Component();
+    air_vehicles* editor = new Component();
+    air_vehicles* editor2 = new Component();
 
 
     std::vector<char> mass_for_move(80,'s');
@@ -81,29 +80,29 @@ int main() {
                 window.close();
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-                editor2->shootAllObjects(); // Все объекты начинают стрелять при нажатии Space
-                editor->shootAllObjects(); // Все объекты начинают стрелять при нажатии Space
+                editor2->shoot(); // Все объекты начинают стрелять при нажатии Space
+                editor->shoot(); // Все объекты начинают стрелять при нажатии Space
             }
         }
 
 
         map->displayMap(window);
         
-        editor2->renderAllObjects(window);
-        editor2->moveAllObjects();
-        editor2->updateShootingForAllObjects(window);
+        editor2->display(window);
+        editor2->moveSprite();
+        editor2->updateShooting(window);
 
 
-        editor->renderAllObjects(window);
+        editor->display(window);
         if (now < static_cast<int>(mass_for_move.size())){
-            editor->moveAllObjects(mass_for_move, now);
+            editor->moveSprite(mass_for_move, now);
             now++;
         }
         else
         {
             now = 0;
         }
-        editor->updateShootingForAllObjects(window);
+        editor->updateShooting(window);
         
 
         window.display();

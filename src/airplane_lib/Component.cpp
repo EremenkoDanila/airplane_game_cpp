@@ -4,7 +4,7 @@
 
 #include "air_vehicles.h"
 #include "Creator.h"
-#include "Composite.h"
+
 
 
 Component::Component() {}
@@ -17,6 +17,7 @@ Component::~Component() {
 
 void Component::addObject(air_vehicles* object) {
     objects.push_back(object);
+    object->SetParent(this);
 }
 
 
@@ -27,58 +28,6 @@ void Component::removeObject(air_vehicles* object) {
         objects.erase(it);
     }
 }
-
-
-void Component::moveAllObjects() {
-    for (auto object : objects) {
-        object->moveSprite();
-    }
-}
-
-
-
-void Component::moveAllObjects(std::vector<char> mass_for_move,int now) {
-    for (auto object : objects) {
-        object->moveSprite(mass_for_move, now);
-    }
-}
-
-
-void Component::changeSpeedOfAllObjects(int newSpeed) {
-    for (auto object : objects) {
-        object->set_speed(newSpeed);
-    }
-}
-
-
-void Component::renderAllObjects(sf::RenderWindow& window) {
-    for (auto object : objects) {
-        object->display(window);
-    }
-}
-
-
-Component::Component(int number_of_plane){
-
-}
-
-
-// Стрельба для всех объектов
-void Component::shootAllObjects() {
-    for (auto object : objects) {
-        object->shoot(); // Вызываем метод стрельбы для каждого объекта
-    }
-}
-
-// Обновление снарядов всех объектов
-void Component::updateShootingForAllObjects(sf::RenderWindow& window) {
-    for (auto object : objects) {
-        object->updateShooting(window); // Обновляем снаряды для каждого объекта
-    }
-}
-
-
-
 
 
 void Component::set_hp(int hp_){
