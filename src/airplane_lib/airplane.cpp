@@ -27,7 +27,7 @@ void airplane::moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size,u
         sprite.move(-speed, 0.f);  // Изменение координаты X
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && (position.x < (window_width-(window_width*0.01)) )) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && (position.x < (window_width-(window_width*0.01)) -450 )) {
         // Перемещаем спрайт вправо
         sprite.move(speed, 0.f);   // Изменение координаты X
     }

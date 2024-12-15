@@ -9,8 +9,11 @@
 
 Component::Component() {}
 Component::~Component() {
+    int i = 1;
     for (auto object : objects) {
         delete object;
+         std::cout <<i<< ") delete object (enemy)" << std::endl;
+         i++;
     }
 }
 
@@ -22,10 +25,13 @@ void Component::addObject(air_vehicles* object) {
 
 
 void Component::removeObject(air_vehicles* object) {
+    int i = 1;
     auto it = std::find(objects.begin(), objects.end(), object);
     if (it != objects.end()) {
         delete *it;
         objects.erase(it);
+        std::cout <<i<< ") delete object (enemy)" << std::endl;
+        i++;
     }
 }
 
