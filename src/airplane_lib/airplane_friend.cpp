@@ -27,12 +27,13 @@ airplane_friend::airplane_friend(char flg, int hp_, int speed_, const std::strin
     if (flg == 'f') {
         sprite.rotate(90);
         sprite.scale(0.5f, 0.5f);
+         std::cout<<"the airplane_friend was created"<<std::endl;
     }
     if(flg == 'e') {
         sprite.rotate(-90);
         sprite.scale(0.2f, 0.2f);
+         std::cout<<"the airplane_enemy was created"<<std::endl;
     }
-    std::cout<<"the airplane_friend was created"<<std::endl;
 }
 
 

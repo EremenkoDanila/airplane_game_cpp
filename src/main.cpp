@@ -110,6 +110,8 @@ int main() {
     std:: cout<<"Stage of objects removal"<<std::endl;
     creator->remove_airplane_friend(airplane);
     delete creator;
+    delete editor;
+    delete editor2;
     delete map;
     std::cout <<"Close this program"<<std::endl;
     return 0;
