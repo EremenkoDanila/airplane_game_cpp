@@ -7,13 +7,13 @@ AirVehicle* ConcreteCreator::CreatAirplaneFriend(char flg, int hp_, int speed_, 
                                                     const sf::Vector2f& position,unsigned int window_width, unsigned int window_height) 
                                                     {
     std::cout<<"the ConcreteCreator is trying to  created a airplane"<<std::endl;
-     return new airplane_friend(flg, hp_, speed_, texturePath, position, window_width,window_height);
+     return new Airplane(flg, hp_, speed_, texturePath, position, window_width,window_height);
 }
 
 
 void ConcreteCreator::RemoveAirplane(AirVehicle* airplane) {
     delete airplane;
-    std::cout<<"the airplane_friend was deleted"<<std::endl;
+    std::cout<<"the airplane was deleted"<<std::endl;
 }
 
 ConcreteCreator::ConcreteCreator(){

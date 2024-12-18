@@ -24,7 +24,7 @@ void Component::AddObject(AirVehicle* object) {
 }
 
 
-void Component::removeObject(AirVehicle* object) {
+void Component::RemoveObject(AirVehicle* object) {
     int i = 1;
     auto it = std::find(objects.begin(), objects.end(), object);
     if (it != objects.end()) {
@@ -36,43 +36,43 @@ void Component::removeObject(AirVehicle* object) {
 }
 
 
-void Component::set_hp(int hp_){
+void Component::Set_hp(int hp_){
         for (auto object : objects) {
-        object->set_hp(hp_);
+        object->Set_hp(hp_);
     }
 }
-void Component::set_speed(int speed_){
+void Component::Set_speed(int speed_){
     for (auto object : objects) {
-        object->set_speed(speed_);
-    }
-}
-
-void Component::setTexture(const std::string& texturePath){
-    for (auto object : objects) {
-        object->setTexture(texturePath);
+        object->Set_speed(speed_);
     }
 }
 
-
-void Component::setPosition(const sf::Vector2f& position){
+void Component::SetTexture(const std::string& texturePath){
     for (auto object : objects) {
-        object->setPosition(position);
+        object->SetTexture(texturePath);
+    }
+}
+
+
+void Component::SetPosition(const sf::Vector2f& position){
+    for (auto object : objects) {
+        object->SetPosition(position);
     }
     
 }
 
-const sf::Texture& Component::getTexture() {
+const sf::Texture& Component::GetTexture() {
     if (!objects.empty()) {
-        return objects.front()->getTexture(); // Возвращаем текстуру первого объекта
+        return objects.front()->GetTexture(); // Возвращаем текстуру первого объекта
     }
     static const sf::Texture emptyTexture; // Для случая, когда коллекция пустая
     return emptyTexture;
 }
 
 
-sf::Vector2f Component::getPosition(){
+sf::Vector2f Component::GetPosition(){
     if (!objects.empty()) {
-        return objects.front()->getPosition(); // Возвращаем текстуру первого объекта
+        return objects.front()->GetPosition(); // Возвращаем текстуру первого объекта
     }
     static const sf::Vector2f emptyTexture; // Для случая, когда коллекция пустая
     return emptyTexture;

@@ -10,7 +10,7 @@
 
 
 namespace airplane{
-void moveSprite_all(sf::Sprite&, int,sf::Vector2u,unsigned int window_width,unsigned int window_height);
+void MoveSpriteUserControl(sf::Sprite&, int,sf::Vector2u,unsigned int window_width,unsigned int window_height);
 }
 
 
