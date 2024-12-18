@@ -11,9 +11,9 @@
 #include "Creator.h"
 
 
-class Component : public air_vehicles {
+class Component : public AirVehicle {
     private:
-    std::vector<air_vehicles*> objects; 
+    std::vector<AirVehicle*> objects; 
 
     public:
 
@@ -21,8 +21,8 @@ class Component : public air_vehicles {
     Component(int number_of_plane);
     ~Component();
         
-    void addObject(air_vehicles* object) override;
-    void removeObject(air_vehicles* object) override;
+    void addObject(AirVehicle* object) override;
+    void removeObject(AirVehicle* object) override;
     
 
      void set_hp(int hp_);

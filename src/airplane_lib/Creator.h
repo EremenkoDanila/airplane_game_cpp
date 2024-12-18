@@ -13,11 +13,11 @@ class Creator{
     public:
     Creator(){};
     virtual ~Creator(){};
-    virtual air_vehicles *creat_airplane_friend(
+    virtual AirVehicle *creat_airplane_friend(
                                             char flg, int hp_, int speed_, const std::string& texturePath,
                                             const sf::Vector2f& position, unsigned int window_width, unsigned int window_height
                                             )=0;
-    virtual void remove_airplane_friend(air_vehicles *airplane)=0;
+    virtual void remove_airplane_friend(AirVehicle *airplane)=0;
 };
 
 #endif 

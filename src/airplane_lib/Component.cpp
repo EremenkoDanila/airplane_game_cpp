@@ -18,13 +18,13 @@ Component::~Component() {
 }
 
 
-void Component::addObject(air_vehicles* object) {
+void Component::addObject(AirVehicle* object) {
     objects.push_back(object);
     object->SetParent(this);
 }
 
 
-void Component::removeObject(air_vehicles* object) {
+void Component::removeObject(AirVehicle* object) {
     int i = 1;
     auto it = std::find(objects.begin(), objects.end(), object);
     if (it != objects.end()) {
