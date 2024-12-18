@@ -14,26 +14,23 @@ class Airplane : public AirVehicle{
     sf::Texture texture_; 
     unsigned int window_width_;
     unsigned int window_height_;
-    void AddObject(AirVehicle* object);
-    void RemoveObject(AirVehicle* object);
     Shooting shooting;
 
+    void AddObject(AirVehicle* object);
+    void RemoveObject(AirVehicle* object);
+    
  public:
     Airplane();
     ~Airplane() override = default;
-    Airplane(
-                        char flg, int hp_, int speed_, const std::string& texturePath, 
-                        const sf::Vector2f& position,  unsigned int window_width,
-                         unsigned int window_height
-                     );
-
+    Airplane(char flg, int hp, int speed, 
+             const std::string& texturePath,
+             const sf::Vector2f& position, 
+             unsigned int window_width, 
+             unsigned int window_height);
     void Set_hp(int hp_);
     void Set_speed(int speed_);
-
     void SetTexture(const std::string& texturePath);
     void SetPosition(const sf::Vector2f& position);
-
-
     const sf::Texture& GetTexture();
     sf::Vector2f GetPosition() override; 
     void MoveSprite();

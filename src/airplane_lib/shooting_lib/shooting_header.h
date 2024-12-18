@@ -1,6 +1,5 @@
 #ifndef shooting_lib
 #define shooting_lib
-
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>

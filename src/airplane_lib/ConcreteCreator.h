@@ -11,15 +11,13 @@
 #include "Creator.h"
 
 class ConcreteCreator : public Creator{
-    public:
+ public:
     ConcreteCreator();
     ~ConcreteCreator() override;
-    AirVehicle* CreatAirplaneFriend(char flg, int hp_, int speed_, const std::string& texturePath,
-                                        const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) override;
-   //air_vehicles * creat_airplane_enemie();
+    AirVehicle* CreatAirplaneFriend(char flg, int hp, int speed, const std::string& texturePath,
+                                    const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) override;
     void RemoveAirplane(AirVehicle *airplane) override;
 };
-
 
 
 #endif 
