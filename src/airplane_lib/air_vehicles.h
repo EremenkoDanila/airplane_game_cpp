@@ -8,17 +8,17 @@
 #include "shooting_lib/shooting_header.h"
 
 
-class air_vehicles{
+class AirVehicle{
     private:
     std::string name;
-    air_vehicles *parent_;
+    AirVehicle *parent_;
 
     public:
-     void SetParent(air_vehicles *parent_) {
+     void SetParent(AirVehicle *parent_) {
           this->parent_ = parent_;
     }
 
-    virtual ~air_vehicles() {};
+    virtual ~AirVehicle() {};
     virtual void set_hp(int hp_) = 0;
     virtual void set_speed(int speed_) = 0;
 
@@ -35,8 +35,8 @@ class air_vehicles{
     virtual void updateShooting(sf::RenderWindow& window) = 0; 
 
 
-    virtual void addObject(air_vehicles* object) = 0;
-    virtual void removeObject(air_vehicles* object) = 0;
+    virtual void addObject(AirVehicle* object) = 0;
+    virtual void removeObject(AirVehicle* object) = 0;
 };
 
 #endif 

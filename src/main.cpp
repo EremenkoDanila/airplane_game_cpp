@@ -29,67 +29,65 @@ int main() {
         std::vector<char> mass_for_move(80, 's');
         mass_for_move.insert(mass_for_move.end(), 130, 'w');
         mass_for_move.insert(mass_for_move.end(), 50, 's');
-        int now = 0;
+        int mov_num = 0;
 
 
         Creator* creator = new ConcreteCreator();
-        air_vehicles* editor = new Component();
-        air_vehicles* editor2 = new Component();
+        AirVehicle* user = new Component();
+        AirVehicle* enemies = new Component();
         GameMap* map = new GameMap(path_map,WINDOW_WIGHT,WINDOW_HEIGHT);
         sf::Event event;
 
-        air_vehicles* airplane  = creator->creat_airplane_friend('f', 100, 4, path_airplane, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
-        air_vehicles* airplane1 = creator->creat_airplane_friend('e', 100, 4, path_hostile_fighter, sf::Vector2f(1600, 400), WINDOW_WIGHT, WINDOW_HEIGHT);
-        air_vehicles* airplane2 = creator->creat_airplane_friend('e', 100, 4, path_hostile_fighter, sf::Vector2f(1500, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
-        air_vehicles* airplane3 = creator->creat_airplane_friend('e', 100, 4, path_hostile_fighter, sf::Vector2f(1400, 600), WINDOW_WIGHT, WINDOW_HEIGHT);
-        air_vehicles* airplane4 = creator->creat_airplane_friend('e', 100, 4, path_hostile_fighter, sf::Vector2f(1500, 700), WINDOW_WIGHT, WINDOW_HEIGHT);
-        air_vehicles* airplane5 = creator->creat_airplane_friend('e', 100, 4, path_hostile_fighter, sf::Vector2f(1600, 800), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane  = creator->creat_airplane_friend('f', 100, 4, path_airplane, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane1 = creator->creat_airplane_friend('e', 100, 4, path_hostile_fighter, sf::Vector2f(1600, 400), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane2 = creator->creat_airplane_friend('e', 100, 4, path_hostile_fighter, sf::Vector2f(1500, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane3 = creator->creat_airplane_friend('e', 100, 4, path_hostile_fighter, sf::Vector2f(1400, 600), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane4 = creator->creat_airplane_friend('e', 100, 4, path_hostile_fighter, sf::Vector2f(1500, 700), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane5 = creator->creat_airplane_friend('e', 100, 4, path_hostile_fighter, sf::Vector2f(1600, 800), WINDOW_WIGHT, WINDOW_HEIGHT);
 
-        editor2->addObject(airplane);
-        editor->addObject(airplane1);
-        editor->addObject(airplane2);
-        editor->addObject(airplane3);
-        editor->addObject(airplane4);
-        editor->addObject(airplane5);
+        user->addObject(airplane);
+        enemies->addObject(airplane1);
+        enemies->addObject(airplane2);
+        enemies->addObject(airplane3);
+        enemies->addObject(airplane4);
+        enemies->addObject(airplane5);
 
         std::cout << "All objects created" << std::endl;
         std::cout << "Make some actions" << std::endl;
         
         while (window.isOpen()){
-
-            
             while (window.pollEvent(event)){
                 if (event.type == sf::Event::Closed){
                     window.close();
                 }
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space){
-                    editor2->shoot(); 
-                    editor->shoot(); 
+                    user->shoot(); 
+                    enemies->shoot(); 
                 }
             }
 
             map->displayMap(window);
-            editor2->display(window);
-            editor2->moveSprite();
-            editor2->updateShooting(window);
-            editor->display(window);
+            user->display(window);
+            user->moveSprite();
+            user->updateShooting(window);
+            enemies->display(window);
 
-            if (now < static_cast<int>(mass_for_move.size())){
-                editor->moveSprite(mass_for_move, now);
-                now++;
+            if (mov_num < static_cast<int>(mass_for_move.size())){
+                enemies->moveSprite(mass_for_move, mov_num);
+                mov_num++;
             } else {
-                now = 0;
+                mov_num = 0;
             }
 
-            editor->updateShooting(window);
+            enemies->updateShooting(window);
             window.display();
         }
 
         std::cout << "Stage of objects removal" << std::endl;
         creator->remove_airplane_friend(airplane);
         delete creator;
-        delete editor;
-        delete editor2;
+        delete enemies;
+        delete user;
         delete map;
         std::cout << "Close this program" << std::endl;
         return 0;

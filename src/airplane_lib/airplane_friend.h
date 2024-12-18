@@ -10,7 +10,7 @@
 
 
 
-class airplane_friend : public air_vehicles{
+class airplane_friend : public AirVehicle{
     private:
 
     unsigned int hp;
@@ -22,8 +22,8 @@ class airplane_friend : public air_vehicles{
      unsigned int window_width;
      unsigned int window_height;
 
-    void addObject(air_vehicles* object){};
-    void removeObject(air_vehicles* object){};
+    void addObject(AirVehicle* object){};
+    void removeObject(AirVehicle* object){};
 
     Shooting shooting;
 
