@@ -51,7 +51,7 @@ void airplane_friend::setPosition(const sf::Vector2f& position) {
 
 
 
-void airplane_friend:: display(sf::RenderWindow& window) {;
+void airplane_friend:: Display(sf::RenderWindow& window) {;
     window.draw(sprite);
 }
 
@@ -61,7 +61,7 @@ const sf::Texture& airplane_friend::getTexture(){
 }
 
 
-void airplane_friend::moveSprite(std::vector<char> mass_for_move,int now)
+void airplane_friend::MoveSprite(std::vector<char> mass_for_move,int now)
 {
     int speed_tmp = this->speed;
     if (static_cast<int>(mass_for_move.size()) > now)
@@ -87,7 +87,7 @@ void airplane_friend::moveSprite(std::vector<char> mass_for_move,int now)
 
 }
 
-void airplane_friend::moveSprite() {
+void airplane_friend::MoveSprite() {
 
     airplane::moveSprite_all(sprite, speed, texture.getSize(), window_width, window_height);
 
@@ -105,11 +105,11 @@ void airplane_friend::moveSprite() {
 
 
     // Реализация метода стрельбы
-void airplane_friend::shoot() {
+void airplane_friend::Shoot() {
     shooting.shoot(getPosition()); // Стрельба из текущей позиции самолёта
 }
 
 // Обновление снарядов
-void airplane_friend::updateShooting(sf::RenderWindow& window) {
+void airplane_friend::UpdateShooting(sf::RenderWindow& window) {
     shooting.update(window); // Обновление и отрисовка снарядов
 }

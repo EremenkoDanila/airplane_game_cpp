@@ -5,15 +5,15 @@
 #include <string>
 
 class GameMap {
-public:
-    GameMap(const std::string& backgroundFilePath,unsigned int window_width,unsigned int window_height);
-    void displayMap(sf::RenderWindow& window);
+ public:
+    GameMap(const std::string& kBackgroundFilePath, const unsigned int WINDOW_WIGHT, const unsigned int WINDOW_HEIGHT);
+    void Display(sf::RenderWindow& window);
     ~GameMap();
 
-private:
-    sf::View border;
-    sf::Texture backgroundTexture; // Текстура фона
-    sf::Sprite backgroundSprite;   // Спрайт фона
+ private:
+    sf::View border_;
+    sf::Texture backgroundTexture_; 
+    sf::Sprite backgroundSprite_;  
 };
 
 #endif 

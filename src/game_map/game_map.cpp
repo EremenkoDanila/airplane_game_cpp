@@ -1,30 +1,28 @@
 #include "game_header.h"
 #include <iostream>
-//const std::string& mapFilePath,
 
-GameMap::GameMap( const std::string& backgroundFilePath, unsigned int window_width, unsigned intwindow_height) {
-    // Загружаем текстуру фона
-    if (!backgroundTexture.loadFromFile(backgroundFilePath)) {
+GameMap::GameMap( const std::string& kBackgroundFilePath, const unsigned int WINDOW_WIGHT, const unsigned int WINDOW_HEIGHT) {
+    if (!backgroundTexture_.loadFromFile(kBackgroundFilePath)) {
         std::cerr << "Error: Could not load background image." << std::endl;
     } else {
-        backgroundSprite.setTexture(backgroundTexture);
-        // Устанавливаем размер фона по размеру окна
-        backgroundSprite.setScale(
-            static_cast<float>(window_width) / backgroundTexture.getSize().x,
-            static_cast<float>(intwindow_height) / backgroundTexture.getSize().y
+        backgroundSprite_.setTexture(backgroundTexture_);
+        backgroundSprite_.setScale(
+            static_cast<float>(WINDOW_WIGHT) / backgroundTexture_.getSize().x,
+            static_cast<float>(WINDOW_HEIGHT) / backgroundTexture_.getSize().y
         );
     }
-    border.setSize(sf::Vector2f(window_width, intwindow_height)); // Устанавливаем размер области
-    border.setCenter(window_width / 2, intwindow_height / 2);     // Устанавливаем центр области
+
+    border_.setSize(sf::Vector2f(WINDOW_WIGHT, WINDOW_HEIGHT)); 
+    border_.setCenter(WINDOW_WIGHT / 2, WINDOW_HEIGHT / 2);    
     std::cout << "Map loaded." << std::endl;
 }
 
-void GameMap::displayMap(sf::RenderWindow& window) {
+void GameMap::Display(sf::RenderWindow& window) {
     window.clear(sf::Color::Green);
-    window.setView(border);
-    window.draw(backgroundSprite);
+    window.setView(border_);
+    window.draw(backgroundSprite_);
 }
 
 GameMap::~GameMap(){
-    std::cout<<"Map destroyed." << std::endl;
+    std::cout << "Map destroyed." << std::endl;
 }

@@ -1,12 +1,10 @@
 cmake_minimum_required(VERSION 3.23)
 
 set(project "game_map")
+
 project(${project})
 
 set(CMAKE_CXX_STANDARD 17)
-
-# Ищем установленную библиотеку SFML
-#set(SFML_DIR ".*SFMLConfig\.cmake$"
 
 set(SFML_DIR "../../build/_deps/sfml-src/include/SFML")
 

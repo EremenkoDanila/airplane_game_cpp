@@ -28,14 +28,14 @@ class AirVehicle{
 
     virtual const sf::Texture& getTexture()=0;
     virtual sf::Vector2f getPosition() = 0; 
-    virtual void moveSprite()=0;
-    virtual void moveSprite(std::vector<char> mass_for_move, int now )=0;
-    virtual void display(sf::RenderWindow& window) = 0;
-    virtual void shoot() = 0; 
-    virtual void updateShooting(sf::RenderWindow& window) = 0; 
+    virtual void MoveSprite()=0;
+    virtual void MoveSprite(std::vector<char> mass_for_move, int now )=0;
+    virtual void Display(sf::RenderWindow& window) = 0;
+    virtual void Shoot() = 0; 
+    virtual void UpdateShooting(sf::RenderWindow& window) = 0; 
 
 
-    virtual void addObject(AirVehicle* object) = 0;
+    virtual void AddObject(AirVehicle* object) = 0;
     virtual void removeObject(AirVehicle* object) = 0;
 };
 

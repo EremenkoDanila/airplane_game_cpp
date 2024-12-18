@@ -22,7 +22,7 @@ class airplane_friend : public AirVehicle{
      unsigned int window_width;
      unsigned int window_height;
 
-    void addObject(AirVehicle* object){};
+    void AddObject(AirVehicle* object){};
     void removeObject(AirVehicle* object){};
 
     Shooting shooting;
@@ -45,11 +45,11 @@ class airplane_friend : public AirVehicle{
 
     const sf::Texture& getTexture();
     sf::Vector2f getPosition() override; 
-    void moveSprite();
-    void moveSprite(std::vector<char> mass_for_move,  int now) override;
-    void display(sf::RenderWindow& window);
-    void shoot() override; 
-    void updateShooting(sf::RenderWindow& window) override; 
+    void MoveSprite();
+    void MoveSprite(std::vector<char> mass_for_move,  int now) override;
+    void Display(sf::RenderWindow& window);
+    void Shoot() override; 
+    void UpdateShooting(sf::RenderWindow& window) override; 
 
 
 

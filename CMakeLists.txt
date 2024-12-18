@@ -1,5 +1,6 @@
 
 cmake_minimum_required(VERSION 3.28)
+
 project(AirplaneGame)
 
 set(CMAKE_CXX_STANDARD 17)

@@ -3,7 +3,7 @@
 #include "ConcreteCreator.h"
 
 
-AirVehicle* ConcreteCreator::creat_airplane_friend(char flg, int hp_, int speed_, const std::string& texturePath,
+AirVehicle* ConcreteCreator::CreatAirplaneFriend(char flg, int hp_, int speed_, const std::string& texturePath,
                                                     const sf::Vector2f& position,unsigned int window_width, unsigned int window_height) 
                                                     {
     std::cout<<"the ConcreteCreator is trying to  created a airplane"<<std::endl;
@@ -11,7 +11,7 @@ AirVehicle* ConcreteCreator::creat_airplane_friend(char flg, int hp_, int speed_
 }
 
 
-void ConcreteCreator::remove_airplane_friend(AirVehicle* airplane) {
+void ConcreteCreator::RemoveAirplane(AirVehicle* airplane) {
     delete airplane;
     std::cout<<"the airplane_friend was deleted"<<std::endl;
 }
