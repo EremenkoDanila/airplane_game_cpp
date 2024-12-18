@@ -1,13 +1,10 @@
 #ifndef Creator_h
 #define Creator_h
-
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
-#include "air_vehicles.h"
+#include "AirVehicle_class.h"
 #include "shooting_lib/shooting_header.h"
-
-#include "air_vehicles.h"
 
 class Creator{
     public:

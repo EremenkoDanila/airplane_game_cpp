@@ -1,5 +1,5 @@
 #include "Component.h"
-#include "air_vehicles.h"
+#include "AirVehicle_class.h"
 #include "Creator.h"
 
 Component::Component(){}

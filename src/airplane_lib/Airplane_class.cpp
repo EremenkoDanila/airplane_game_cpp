@@ -1,5 +1,5 @@
-#include "airplane_header.h"
-#include "airplane_friend.h"
+#include "Airplane_nsp.h"
+#include "Airplane_class.h"
 
 sf::Vector2f Airplane::GetPosition(){
     return sprite_.getPosition();

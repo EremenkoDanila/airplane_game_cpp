@@ -1,9 +1,8 @@
-#ifndef AIR_VEHICLES_H
-#define AIR_VEHICLES_H
+#ifndef AirVehicle_H
+#define AirVehicle_H
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
-#include "air_vehicles.h"
 #include "shooting_lib/shooting_header.h"
 
 class AirVehicle{

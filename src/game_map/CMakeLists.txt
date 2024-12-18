@@ -10,10 +10,10 @@ set(SFML_DIR "../../build/_deps/sfml-src/include/SFML")
 
 # Определяем источники и заголовочные файлы
 set(${project}_SOURCES
-        game_map.cpp)
+        Game_map.cpp)
 
 set(${project}_HEADERS
-        game_header.h)
+        Game_header.h)
 
 set(${project}_SOURCE_LIST
         ${${project}_SOURCES}
