@@ -10,9 +10,9 @@ set(SFML_DIR "../../build/_deps/sfml-src/include/SFML")
 
 # Определяем источники и заголовочные файлы
 set(${project}_SOURCES
-        airplane.cpp airplane_friend.cpp ConcreteCreator.cpp Component.cpp)
+        Airplane_nsp.cpp Airplane_class.cpp ConcreteCreator.cpp Component.cpp)
 set(${project}_HEADERS
-        airplane_header.h air_vehicles.h airplane_friend.h Creator.h ConcreteCreator.h  Component.h)
+        Airplane_nsp.h AirVehicle_class.h Airplane_class.h Creator.h ConcreteCreator.h  Component.h) 
 set(${project}_SOURCE_LIST
         ${${project}_SOURCES}
         ${${project}_HEADERS})

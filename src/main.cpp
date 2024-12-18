@@ -1,12 +1,12 @@
 #include <SFML/Graphics.hpp>
-#include "game_map/game_header.h"
-#include "airplane_lib/airplane_header.h"
+#include "game_map/Game_header.h"
+#include "airplane_lib/Airplane_nsp.h"
 #include "airplane_lib/shooting_lib/shooting_header.h"
-#include "airplane_lib/airplane_friend.h"
-#include "airplane_lib/air_vehicles.h"
+#include "airplane_lib/Airplane_class.h"
 #include "airplane_lib/Creator.h"
 #include "airplane_lib/ConcreteCreator.h"
 #include "airplane_lib/Component.h"
+#include "airplane_lib/AirVehicle_class.h"
 #include <iostream>
 #include <filesystem>
 #include <thread>

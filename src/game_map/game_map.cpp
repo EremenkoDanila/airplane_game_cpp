@@ -1,4 +1,4 @@
-#include "game_header.h"
+#include "Game_header.h"
 #include <iostream>
 
 GameMap::GameMap( const std::string& kBackgroundFilePath, const unsigned int WINDOW_WIGHT, const unsigned int WINDOW_HEIGHT) {

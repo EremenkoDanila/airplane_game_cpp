@@ -1,12 +1,11 @@
 #ifndef airplane_lib
 #define airplane_lib
-
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
 #include "shooting_lib/shooting_header.h"
-#include "air_vehicles.h"
-#include "airplane_friend.h"
+#include "AirVehicle_class.h"
+#include "Airplane_class.h"
 
 
 namespace airplane{
