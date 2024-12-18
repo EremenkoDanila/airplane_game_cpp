@@ -6,7 +6,7 @@
 #include "Component.h"
 
 
-void airplane::moveSprite_all(sf::Sprite& sprite, int speed, sf::Vector2u size,unsigned int window_width,unsigned int window_height) {
+void airplane::MoveSpriteUserControl(sf::Sprite& sprite, int speed, sf::Vector2u size,unsigned int window_width,unsigned int window_height) {
     int width = size.x;
     int height = size.y;
     //переделать под длину 

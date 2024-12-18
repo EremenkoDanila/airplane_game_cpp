@@ -22,17 +22,17 @@ class Component : public AirVehicle {
     ~Component();
         
     void AddObject(AirVehicle* object) override;
-    void removeObject(AirVehicle* object) override;
+    void RemoveObject(AirVehicle* object) override;
     
 
-     void set_hp(int hp_);
-     void set_speed(int speed_);
+     void Set_hp(int hp_);
+     void Set_speed(int speed_);
 
-     void setTexture(const std::string& texturePath);
-     void setPosition(const sf::Vector2f& position) ;
+     void SetTexture(const std::string& texturePath);
+     void SetPosition(const sf::Vector2f& position) ;
 
-     const sf::Texture& getTexture();
-           sf::Vector2f getPosition() ; 
+     const sf::Texture& GetTexture();
+           sf::Vector2f GetPosition() ; 
      void MoveSprite();
      void MoveSprite(std::vector<char> mass_for_move, int now );
      void Display(sf::RenderWindow& window);
