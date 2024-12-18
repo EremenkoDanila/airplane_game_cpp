@@ -14,10 +14,10 @@ class ConcreteCreator : public Creator{
     public:
     ConcreteCreator();
     ~ConcreteCreator() override;
-    AirVehicle *creat_airplane_friend(char flg, int hp_, int speed_, const std::string& texturePath,
+    AirVehicle* CreatAirplaneFriend(char flg, int hp_, int speed_, const std::string& texturePath,
                                         const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) override;
    //air_vehicles * creat_airplane_enemie();
-    void remove_airplane_friend(AirVehicle *airplane) override;
+    void RemoveAirplane(AirVehicle *airplane) override;
 };
 
 

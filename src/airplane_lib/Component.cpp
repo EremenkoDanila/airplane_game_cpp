@@ -18,7 +18,7 @@ Component::~Component() {
 }
 
 
-void Component::addObject(AirVehicle* object) {
+void Component::AddObject(AirVehicle* object) {
     objects.push_back(object);
     object->SetParent(this);
 }
@@ -78,35 +78,35 @@ sf::Vector2f Component::getPosition(){
     return emptyTexture;
 }
 
-void Component::moveSprite(){
+void Component::MoveSprite(){
     for (auto object : objects) {
-        object->moveSprite();
+        object->MoveSprite();
     }
 }
 
 
-void Component::moveSprite(std::vector<char> mass_for_move, int now )
+void Component::MoveSprite(std::vector<char> mass_for_move, int now )
 {
     for (auto object : objects) {
-        object->moveSprite(mass_for_move, now);
+        object->MoveSprite(mass_for_move, now);
     }
     
 }
 
-void Component::display(sf::RenderWindow& window){
+void Component::Display(sf::RenderWindow& window){
     for (auto object : objects) {
-        object->display(window);
+        object->Display(window);
     }
 }
-void Component::shoot(){
+void Component::Shoot(){
     for (auto object : objects) {
-        object->shoot();
+        object->Shoot();
     }
     
 }
-void Component::updateShooting(sf::RenderWindow& window){
+void Component::UpdateShooting(sf::RenderWindow& window){
     for (auto object : objects) {
-        object->updateShooting(window);
+        object->UpdateShooting(window);
     }
     
 }

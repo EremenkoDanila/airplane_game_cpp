@@ -21,7 +21,7 @@ class Component : public AirVehicle {
     Component(int number_of_plane);
     ~Component();
         
-    void addObject(AirVehicle* object) override;
+    void AddObject(AirVehicle* object) override;
     void removeObject(AirVehicle* object) override;
     
 
@@ -33,11 +33,11 @@ class Component : public AirVehicle {
 
      const sf::Texture& getTexture();
            sf::Vector2f getPosition() ; 
-     void moveSprite();
-     void moveSprite(std::vector<char> mass_for_move, int now );
-     void display(sf::RenderWindow& window);
-     void shoot(); 
-     void updateShooting(sf::RenderWindow& window) ; 
+     void MoveSprite();
+     void MoveSprite(std::vector<char> mass_for_move, int now );
+     void Display(sf::RenderWindow& window);
+     void Shoot(); 
+     void UpdateShooting(sf::RenderWindow& window) ; 
 };
 
 
