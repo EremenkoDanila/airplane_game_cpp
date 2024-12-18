@@ -2,9 +2,11 @@ cmake_minimum_required(VERSION 3.23)
 
 # Указываем название проекта
 set(project "shooting_lib")
+
 project(${project})
 
 set(SFML_DIR "../../build/_deps/sfml-src/include/SFML")
+
 # Устанавливаем стандарт C++
 set(CMAKE_CXX_STANDARD 17)
 
