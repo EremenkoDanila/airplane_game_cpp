@@ -7,7 +7,6 @@
 
 class AirVehicle{
  private:
-    std::string name_;
     AirVehicle* parent_;
 
  public:
