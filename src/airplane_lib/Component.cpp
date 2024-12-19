@@ -6,8 +6,8 @@ Component::Component(){}
 Component::~Component(){
     int i = 1;
     for (auto object : objects_){
-        delete object;
          std::cout << i << ") delete object (enemy)" << std::endl;
+         delete object;
          i++;
     }
 }
@@ -21,9 +21,9 @@ void Component::RemoveObject(AirVehicle* object){
     int i = 1;
     auto it = std::find(objects_.begin(), objects_.end(), object);
     if (it != objects_.end()) {
+        std::cout << i << ") delete object (enemy)" << std::endl;
         delete *it;
         objects_.erase(it);
-        std::cout << i << ") delete object (enemy)" << std::endl;
         i++;
     }
 }

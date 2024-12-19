@@ -21,7 +21,7 @@ class Airplane : public AirVehicle{
     
  public:
     Airplane();
-    ~Airplane() override = default;
+    ~Airplane();
     Airplane(char flg, int hp, int speed, 
              const std::string& texturePath,
              const sf::Vector2f& position, 
