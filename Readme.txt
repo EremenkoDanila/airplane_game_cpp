@@ -21,11 +21,4 @@
 
 Нужно исправить: 
 
-
-2) Разобраться в реализации функций в классе airplane_friend, чтобы он не был виртуальным 
-    void addObject(air_vehicles* object){};
-    void removeObject(air_vehicles* object){};
-
-
-
-4) Airplane::Airplane() : shooting("../pic/bullet.png", 10.f) сделать ссылку на пулю 
+4) Airplane::Airplane() : shooting("../pic/bullet.png", 10.f) сделать ссылку на пулю из main
