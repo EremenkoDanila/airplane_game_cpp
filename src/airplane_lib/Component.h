@@ -17,14 +17,14 @@ class Component : public AirVehicle {
       ~Component();
       void AddObject(AirVehicle* object) override;
       void RemoveObject(AirVehicle* object) override;
-      void Set_hp(int hp);
-      void Set_speed(int speed);
+      void SetHp(int hp);
+      void SetSpeed(int speed);
       void SetTexture(const std::string& texturePath);
       void SetPosition(const sf::Vector2f& position) ;
       const sf::Texture& GetTexture();
       sf::Vector2f GetPosition() ; 
       void MoveSprite();
-      void MoveSprite(std::vector<char> mass_for_move, int now );
+      void MoveSprite(std::vector<char> mass_for_move, int mov_num);
       void Display(sf::RenderWindow& window);
       void Shoot(); 
       void UpdateShooting(sf::RenderWindow& window) ; 

@@ -9,9 +9,9 @@
 
 
 namespace airplane{
-void MoveSpriteUserControl(sf::Sprite&, int,sf::Vector2u,unsigned int window_width,unsigned int window_height);
+void MoveSpriteUserControl(sf::Sprite&, int,sf::Vector2u,
+                           const unsigned int KWINDOW_WIDTH,
+                           const unsigned int KWINDOW_HEIGHT);
 }
-
-
 
 #endif

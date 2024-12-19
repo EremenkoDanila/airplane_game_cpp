@@ -12,12 +12,12 @@ Airplane::Airplane() : shooting("../pic/bullet.png", 10.f){
 Airplane::Airplane(char flg, int hp, int speed, 
                    const std::string& texturePath,
                    const sf::Vector2f& position, 
-                   unsigned int window_width, 
-                   unsigned int window_height) : shooting("../pic/bullet.png", 10.f){
+                   unsigned int KWINDOW_WIDTH, 
+                   unsigned int KWINDOW_HEIGHT) : shooting("../pic/bullet.png", 10.f){
     this->hp_ = hp;
     this->speed_ = speed;
-    this->window_width_= window_width;
-    this->window_height_= window_height;
+    this->window_width_= KWINDOW_WIDTH;
+    this->window_height_= KWINDOW_HEIGHT;
     SetTexture(texturePath);
     SetPosition(position);
     if (flg == 'f') {
@@ -33,16 +33,16 @@ Airplane::Airplane(char flg, int hp, int speed,
 }
 
 
-void Airplane::SetTexture(const std::string& texturePath){
-    if (!texture_.loadFromFile(texturePath)) {
-        std::cerr << "Failed to load airplane texture from: " << texturePath << std::endl;
+void Airplane::SetTexture(const std::string& ktexturePath){
+    if (!texture_.loadFromFile(ktexturePath)) {
+        std::cerr << "Failed to load airplane texture from: " << ktexturePath << std::endl;
         throw std::runtime_error("Texture loading failed");
     }
     sprite_.setTexture(texture_);
 }
 
-void Airplane::SetPosition(const sf::Vector2f& position){
-    sprite_.setPosition(position);
+void Airplane::SetPosition(const sf::Vector2f& kposition){
+    sprite_.setPosition(kposition);
 }
 
 
@@ -57,11 +57,11 @@ const sf::Texture& Airplane::GetTexture(){
 }
 
 
-void Airplane::MoveSprite(std::vector<char> mass_for_move,int now){
+void Airplane::MoveSprite(std::vector<char> mass_for_move, int mov_num){
     int speed_tmp = this->speed_;
-    if (static_cast<int>(mass_for_move.size()) > now)
+    if (static_cast<int>(mass_for_move.size()) > mov_num)
     {
-        char tmp = mass_for_move[now];
+        char tmp = mass_for_move[mov_num];
          switch(tmp) {
             case 'w':
                 sprite_.move(0.f, -speed_tmp);  // Изменение координаты Y вверх
@@ -104,11 +104,11 @@ void Airplane::UpdateShooting(sf::RenderWindow& window){
     shooting.update(window); // Обновление и отрисовка снарядов
 }
 
-void Airplane::Set_hp(int hp){
+void Airplane::SetHp(int hp){
     hp_ = hp;
 }
 
-void Airplane::Set_speed(int speed){
+void Airplane::SetSpeed(int speed){
      speed_= speed;
 }
 

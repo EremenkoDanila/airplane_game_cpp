@@ -25,16 +25,16 @@ class Airplane : public AirVehicle{
     Airplane(char flg, int hp, int speed, 
              const std::string& texturePath,
              const sf::Vector2f& position, 
-             unsigned int window_width, 
-             unsigned int window_height);
-    void Set_hp(int hp_);
-    void Set_speed(int speed_);
+             const unsigned int KWINDOW_WIDTH, 
+             const unsigned int KWINDOW_HEIGHT);
+    void SetHp(int hp);
+    void SetSpeed(int speed);
     void SetTexture(const std::string& texturePath);
     void SetPosition(const sf::Vector2f& position);
-    const sf::Texture& GetTexture();
+    const sf::Texture& GetTexture() override;
     sf::Vector2f GetPosition() override; 
     void MoveSprite();
-    void MoveSprite(std::vector<char> mass_for_move,  int now) override;
+    void MoveSprite(std::vector<char> mass_for_move,  int mov_num) override;
     void Display(sf::RenderWindow& window);
     void Shoot() override; 
     void UpdateShooting(sf::RenderWindow& window) override; 
