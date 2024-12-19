@@ -11,8 +11,9 @@ class ConcreteCreator : public Creator{
  public:
     ConcreteCreator();
     ~ConcreteCreator() override;
-    AirVehicle* CreatAirplaneFriend(char flg, int hp, int speed, const std::string& texturePath,
-                                    const sf::Vector2f& position, unsigned int window_width, unsigned int window_height) override;
+    AirVehicle* CreatAirplane(char flg, int hp, int speed, const std::string& texturePath,
+                              const sf::Vector2f& position, const unsigned int KWINDOW_WIDTH,
+                              const unsigned int KWINDOW_HEIGHT) override;
     void RemoveAirplane(AirVehicle *airplane) override;
 };
 

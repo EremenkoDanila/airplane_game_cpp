@@ -10,10 +10,11 @@ class Creator{
     public:
     Creator(){};
     virtual ~Creator(){};
-    virtual AirVehicle* CreatAirplaneFriend(
-                                            char flg, int hp_, int speed_, const std::string& texturePath,
-                                            const sf::Vector2f& position, unsigned int window_width, unsigned int window_height
-                                            )=0;
+    virtual AirVehicle* CreatAirplane(
+                                      char flg, int hp, int speed, const std::string& texturePath,
+                                      const sf::Vector2f& position, const unsigned int KWINDOW_WIDTH,
+                                      const unsigned int KWINDOW_HEIGHT
+                                        )=0;
     virtual void RemoveAirplane(AirVehicle *airplane)=0;
 };
 

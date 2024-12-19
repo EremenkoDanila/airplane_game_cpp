@@ -5,7 +5,7 @@
 
 class GameMap {
  public:
-    GameMap(const std::string& kBackgroundFilePath, const unsigned int WINDOW_WIGHT, const unsigned int WINDOW_HEIGHT);
+    GameMap(const std::string& kBackgroundFilePath, const unsigned int KWINDOW_WIGHT, const unsigned int KWINDOW_HEIGHT);
     void Display(sf::RenderWindow& window);
     ~GameMap();
 

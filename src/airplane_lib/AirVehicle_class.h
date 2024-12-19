@@ -11,10 +11,10 @@ class AirVehicle{
     AirVehicle* parent_;
 
  public:
-    void SetParent(AirVehicle *parent_) {this->parent_ = parent_;}
+    void SetParent(AirVehicle *parent) {this->parent_ = parent;}
     virtual ~AirVehicle() {};
-    virtual void Set_hp(int hp_) = 0;
-    virtual void Set_speed(int speed_) = 0;
+    virtual void SetHp(int hp) = 0;
+    virtual void SetSpeed(int speed) = 0;
     virtual void SetTexture(const std::string& texturePath) = 0;
     virtual void SetPosition(const sf::Vector2f& position) = 0;
     virtual const sf::Texture& GetTexture()=0;

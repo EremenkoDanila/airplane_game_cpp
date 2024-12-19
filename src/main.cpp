@@ -22,28 +22,27 @@ int main() {
         auto window = sf::RenderWindow({WINDOW_WIGHT, WINDOW_HEIGHT}, "CMake SFML Project");
         window.setFramerateLimit(60);
 
-        std::string path_map = "../pic/map.png";
-        std::string path_airplane_user = "../pic/friend_fighter.png";
-        std::string path_airplane_hostile = "../pic/hostile_fighter.png";
+        const std::string path_map = "../pic/map.png";
+        const std::string path_airplane_user = "../pic/friend_fighter.png";
+        const std::string path_airplane_hostile = "../pic/hostile_fighter.png";
         
         std::vector<char> mass_for_move(80, 's');
         mass_for_move.insert(mass_for_move.end(), 130, 'w');
         mass_for_move.insert(mass_for_move.end(), 50, 's');
         int mov_num = 0;
 
-
         Creator* creator = new ConcreteCreator();
         AirVehicle* user = new Component();
         AirVehicle* enemies = new Component();
-        GameMap* map = new GameMap(path_map,WINDOW_WIGHT,WINDOW_HEIGHT);
+        GameMap* map = new GameMap(path_map, WINDOW_WIGHT, WINDOW_HEIGHT);
         sf::Event event;
 
-        AirVehicle* airplane  = creator->CreatAirplaneFriend('f', 100, 4, path_airplane_user, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane1 = creator->CreatAirplaneFriend('e', 100, 4, path_airplane_hostile, sf::Vector2f(1600, 400), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane2 = creator->CreatAirplaneFriend('e', 100, 4, path_airplane_hostile, sf::Vector2f(1500, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane3 = creator->CreatAirplaneFriend('e', 100, 4, path_airplane_hostile, sf::Vector2f(1400, 600), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane4 = creator->CreatAirplaneFriend('e', 100, 4, path_airplane_hostile, sf::Vector2f(1500, 700), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane5 = creator->CreatAirplaneFriend('e', 100, 4, path_airplane_hostile, sf::Vector2f(1600, 800), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane  = creator->CreatAirplane('f', 100, 4, path_airplane_user, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane1 = creator->CreatAirplane('e', 100, 4, path_airplane_hostile, sf::Vector2f(1600, 400), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane2 = creator->CreatAirplane('e', 100, 4, path_airplane_hostile, sf::Vector2f(1500, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane3 = creator->CreatAirplane('e', 100, 4, path_airplane_hostile, sf::Vector2f(1400, 600), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane4 = creator->CreatAirplane('e', 100, 4, path_airplane_hostile, sf::Vector2f(1500, 700), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane5 = creator->CreatAirplane('e', 100, 4, path_airplane_hostile, sf::Vector2f(1600, 800), WINDOW_WIGHT, WINDOW_HEIGHT);
 
         user->AddObject(airplane);
         enemies->AddObject(airplane1);
@@ -51,6 +50,8 @@ int main() {
         enemies->AddObject(airplane3);
         enemies->AddObject(airplane4);
         enemies->AddObject(airplane5);
+
+airplane1->GetPosition();
 
         std::cout << "All objects created" << std::endl;
         std::cout << "Make some actions" << std::endl;

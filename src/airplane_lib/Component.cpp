@@ -29,14 +29,14 @@ void Component::RemoveObject(AirVehicle* object){
 }
 
 
-void Component::Set_hp(int hp){
+void Component::SetHp(int hp){
         for (auto object : objects_){
-        object->Set_hp(hp);
+        object->SetHp(hp);
     }
 }
-void Component::Set_speed(int speed){
+void Component::SetSpeed(int speed){
     for (auto object : objects_){
-        object->Set_speed(speed);
+        object->SetSpeed(speed);
     }
 }
 
