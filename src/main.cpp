@@ -85,7 +85,6 @@ airplane1->GetPosition();
         }
 
         std::cout << "Stage of objects removal" << std::endl;
-        creator->RemoveAirplane(airplane);
         delete creator;
         delete enemies;
         delete user;
