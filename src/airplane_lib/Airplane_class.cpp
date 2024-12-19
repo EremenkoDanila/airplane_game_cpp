@@ -9,6 +9,10 @@ Airplane::Airplane() : shooting("../pic/bullet.png", 10.f){
     std::cout << "the airplane_friend was created without some parametrs" << std::endl;
 }
 
+Airplane::~Airplane(){
+    std::cout << "the airplane was deleted" << std::endl;
+}
+
 Airplane::Airplane(char flg, int hp, int speed, 
                    const std::string& texturePath,
                    const sf::Vector2f& position, 
