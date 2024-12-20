@@ -2,7 +2,7 @@
 #include "AirVehicle_class.h"
 #include "Creator.h"
 
-Component::Component(){}
+Component::Component(){std::cout << "Component was created" << std::endl;}
 Component::~Component(){
     int i = 1;
     for (auto object : objects_){
@@ -10,6 +10,7 @@ Component::~Component(){
          delete object;
          i++;
     }
+    std::cout << "Component was deleted" << std::endl;
 }
 
 void Component::AddObject(AirVehicle* object){

@@ -8,8 +8,8 @@
 
 class Creator{
     public:
-    Creator(){};
-    virtual ~Creator(){};
+    Creator(){std::cout << "Creator was created" << std::endl;};
+    virtual ~Creator(){std::cout << "Creator was deleted" << std::endl;};
     virtual AirVehicle* CreatAirplane(
                                       char flg, int hp, int speed, const std::string& texturePath,
                                       const sf::Vector2f& position, const unsigned int KWINDOW_WIDTH,
