@@ -10,8 +10,9 @@ class AirVehicle{
     AirVehicle* parent_;
 
  public:
+    AirVehicle(){std::cout <<"AirVehicle was created"<< std::endl;};
     void SetParent(AirVehicle *parent) {this->parent_ = parent;}
-    virtual ~AirVehicle() {};
+    virtual ~AirVehicle() {std::cout <<"AirVehicle was deleted" << std::endl;};
     virtual void SetHp(int hp) = 0;
     virtual void SetSpeed(int speed) = 0;
     virtual void SetTexture(const std::string& texturePath) = 0;
