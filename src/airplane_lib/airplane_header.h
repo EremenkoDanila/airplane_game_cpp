@@ -33,6 +33,11 @@ class air_vehicles{
     virtual void display(sf::RenderWindow& window) = 0;
     virtual void shoot() = 0; // Стрельба
     virtual void updateShooting(sf::RenderWindow& window) = 0; // Обновление снарядов
+    virtual void handleInput(sf::Keyboard::Key key) = 0;
+    virtual bool isDestroyed() const = 0;  
+    virtual std::vector<sf::Sprite>& getProjectiles() = 0;
+    virtual sf::FloatRect getBounds() const = 0;
+    virtual void takeDamage(int damage) = 0;
 };
 
 class airplane_friend : public air_vehicles{
@@ -48,6 +53,8 @@ class airplane_friend : public air_vehicles{
      unsigned int window_height;
 
     Shooting shooting;
+
+    bool destroyed = false;  // Флаг уничтожения самолета
 
     public:
     airplane_friend();
@@ -73,6 +80,11 @@ class airplane_friend : public air_vehicles{
     void display(sf::RenderWindow& window);
     void shoot() override; // Реализация стрельбы
     void updateShooting(sf::RenderWindow& window) override; // Обновление снарядов
+    void handleInput(sf::Keyboard::Key key) override;  // Смена оружия
+    void takeDamage(int damage);  // Уменьшить HP при попадании пули
+    bool isDestroyed() const override;     // Проверить, уничтожен ли самолет
+    std::vector<sf::Sprite>& getProjectiles() override;
+    sf::FloatRect getBounds() const override;
 };
 
 
@@ -118,7 +130,8 @@ class Composite {
     virtual void changeSpeedOfAllObjects(int newSpeed)=0;
     virtual void renderAllObjects(sf::RenderWindow& window)=0;
     virtual void shootAllObjects() = 0;
-    virtual void updateShootingForAllObjects(sf::RenderWindow& window) = 0;    
+    virtual void updateShootingForAllObjects(sf::RenderWindow& window) = 0;  
+    virtual void removeDestroyedObjects() = 0;  
 };
 
 
@@ -140,6 +153,7 @@ class Component : public Composite {
     void renderAllObjects(sf::RenderWindow& window) override;
     void shootAllObjects() override;
     void updateShootingForAllObjects(sf::RenderWindow& window) override;
+    void removeDestroyedObjects() override;
 };
 
 

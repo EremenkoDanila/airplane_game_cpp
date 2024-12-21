@@ -67,17 +67,19 @@ int main() {
 
         
         while (window.pollEvent(event))
-         {
+        {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-                editor2->shootAllObjects(); // Все объекты начинают стрелять при нажатии Space
-                editor->shootAllObjects(); // Все объекты начинают стрелять при нажатии Space
+                airplane->shoot(); // Стреляет союзный самолет
+                editor->shootAllObjects(); // Враги начинают стрелять
+            }
+            // Смена оружия при нажатии E
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E) {
+            airplane->handleInput(sf::Keyboard::E);  // Передаём событие смены оружия
             }
         }
-
-
         map->displayMap(window);
         
         editor2->renderAllObjects(window);
@@ -96,6 +98,15 @@ int main() {
         }
         editor->updateShootingForAllObjects(window);
         
+        // Проверка уничтожения игрока
+        if (airplane->isDestroyed()) {
+            std::cout << "Player airplane destroyed! Game over!" << std::endl;
+            window.close();  // Завершение игры
+        }
+
+        // Удаление уничтоженных объектов
+        editor->removeDestroyedObjects();  // Удаление уничтоженных врагов
+        editor2->removeDestroyedObjects(); // Удаление 
 
         window.display();
     }
