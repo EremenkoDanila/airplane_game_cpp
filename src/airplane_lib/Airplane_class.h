@@ -43,6 +43,12 @@ class Airplane : public AirVehicle{
     bool IsDestroyed() const override;     // Проверить, уничтожен ли самолет
     std::vector<sf::Sprite>& getProjectiles() override;
     sf::FloatRect GetBounds() const override;
+
+
+
+
+    void UpdateShooting(sf::RenderWindow& window, AirVehicle* user) override;
+    void RemoveDestroyedObjects(){};
 };
 
 #endif 
