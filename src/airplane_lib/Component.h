@@ -34,6 +34,10 @@ class Component : public AirVehicle {
       void HandleInput(sf::Keyboard::Key key) override;
       bool IsDestroyed() const override;
       std::vector<sf::Sprite>& getProjectiles() override;
+
+
+
+      void UpdateShooting(sf::RenderWindow& window, AirVehicle* user);
 };
 
 #endif 

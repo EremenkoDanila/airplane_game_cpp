@@ -173,3 +173,49 @@ void Component::RemoveDestroyedObjects() {
             }
         }
 }
+
+
+
+
+
+
+
+void Component::UpdateShooting(sf::RenderWindow& window, AirVehicle* user) {
+    // Обновляем снаряды всех объектов
+    for (auto object : objects_) {
+        object->UpdateShooting(window);  // Обновляем снаряды объекта
+
+        // Проверяем столкновения с другими объектами
+        for (auto target : objects_) {
+            if (object == target) continue;  // Пропускаем проверку с самим собой
+
+            // Получаем пули объекта
+            std::vector<sf::Sprite>& projectiles = object->getProjectiles();
+            for (auto it = projectiles.begin(); it != projectiles.end();) {
+                // Проверяем, попала ли пуля в цель
+                if (target->GetBounds().intersects(it->getGlobalBounds())) {
+                    target->TakeDamage(10);  // Уменьшаем здоровье цели
+                    it = projectiles.erase(it);  // Удаляем пулю
+                } else {
+                    ++it;
+                }
+            }
+        }
+    }
+
+    // Проверяем снаряды пользователя
+    std::vector<sf::Sprite>& userProjectiles = user->getProjectiles();
+    for (auto it = userProjectiles.begin(); it != userProjectiles.end();) {
+        for (auto enemy : objects_) {
+            if (enemy == user) continue;  // Пропускаем проверку с самим собой
+
+            // Проверяем столкновения с врагами
+            if (enemy->GetBounds().intersects(it->getGlobalBounds())) {
+                enemy->TakeDamage(10);  // Уменьшаем здоровье врага
+                it = userProjectiles.erase(it);  // Удаляем пулю
+                break;  // Выходим из цикла, чтобы не проверять другие враги
+            }
+        }
+        if (it != userProjectiles.end()) ++it;  // Увеличиваем итератор только если не удалили элемент
+    }
+}

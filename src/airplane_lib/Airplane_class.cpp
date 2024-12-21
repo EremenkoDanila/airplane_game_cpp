@@ -18,7 +18,7 @@ Airplane::Airplane(char flg, int hp, int speed,
                    const std::string& texturePath,
                    const sf::Vector2f& position, 
                    unsigned int KWINDOW_WIDTH, 
-                   unsigned int KWINDOW_HEIGHT) : shooting("../pic/bullet.png", 10.f){
+                   unsigned int KWINDOW_HEIGHT) : shooting("../pic/bullet.png", (flg == 'f' ? 10 : -10)){
     this->hp_ = hp;
     this->speed_ = speed;
     this->window_width_= KWINDOW_WIDTH;
@@ -163,6 +163,12 @@ void Airplane::MoveSprite() {
 
 void Airplane::UpdateShooting(sf::RenderWindow& window){
     shooting.Update(window); // Обновление и отрисовка снарядов
+}
+
+
+
+void Airplane::UpdateShooting(sf::RenderWindow& window, AirVehicle* user){
+    shooting.Update(window);
 }
 
 void Airplane::SetHp(int hp){

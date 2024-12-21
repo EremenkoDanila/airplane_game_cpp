@@ -12,6 +12,7 @@
 #include <thread>
 #include <string>
 #include <chrono>
+#include <random>
 
 const unsigned int WINDOW_WIGHT = 1920;
 const unsigned int WINDOW_HEIGHT = 1080;
@@ -20,7 +21,7 @@ const unsigned int WINDOW_HEIGHT = 1080;
 int main() {
     while (true){
         auto window = sf::RenderWindow({WINDOW_WIGHT, WINDOW_HEIGHT}, "CMake SFML Project");
-        window.setFramerateLimit(60);
+        window.setFramerateLimit(144);
 
         const std::string path_map = "../pic/map.png";
         const std::string path_airplane_user = "../pic/friend_fighter.png";
@@ -33,16 +34,16 @@ int main() {
 
         Creator* creator = new ConcreteCreator();
         AirVehicle* user = new Component();
-        Component* enemies = new Component();
+        AirVehicle* enemies = new Component();
         GameMap* map = new GameMap(path_map, WINDOW_WIGHT, WINDOW_HEIGHT);
         sf::Event event;
 
-        AirVehicle* airplane  = creator->CreatAirplane('f', 100, 4, path_airplane_user, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane1 = creator->CreatAirplane('e', 10, 4, path_airplane_hostile, sf::Vector2f(1600, 400), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane2 = creator->CreatAirplane('e', 10, 4, path_airplane_hostile, sf::Vector2f(1500, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane3 = creator->CreatAirplane('e', 10, 4, path_airplane_hostile, sf::Vector2f(1400, 600), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane4 = creator->CreatAirplane('e', 10, 4, path_airplane_hostile, sf::Vector2f(1500, 700), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane5 = creator->CreatAirplane('e', 10, 4, path_airplane_hostile, sf::Vector2f(1600, 800), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane  = creator->CreatAirplane('f', 1000 , 4, path_airplane_user, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane1 = creator->CreatAirplane('e', 100, 4, path_airplane_hostile, sf::Vector2f(1600, 400), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane2 = creator->CreatAirplane('e', 100, 4, path_airplane_hostile, sf::Vector2f(1500, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane3 = creator->CreatAirplane('e', 100, 4, path_airplane_hostile, sf::Vector2f(1400, 600), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane4 = creator->CreatAirplane('e', 100, 4, path_airplane_hostile, sf::Vector2f(1500, 700), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane5 = creator->CreatAirplane('e', 100, 4, path_airplane_hostile, sf::Vector2f(1600, 800), WINDOW_WIGHT, WINDOW_HEIGHT);
 
         user->AddObject(airplane);
         enemies->AddObject(airplane1);
@@ -63,7 +64,7 @@ airplane1->GetPosition();
                 }
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space){
                     user->Shoot(); 
-                    //enemies->Shoot(); 
+                    enemies->Shoot(); 
                 }
                 // Смена оружия при нажатии E
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E) {
@@ -74,7 +75,7 @@ airplane1->GetPosition();
             map->Display(window);
             user->Display(window);
             user->MoveSprite();
-            user->UpdateShooting(window);
+            user->UpdateShooting(window, enemies);
 
             enemies->Display(window);
             if (mov_num < static_cast<int>(mass_for_move.size())) {
@@ -83,7 +84,7 @@ airplane1->GetPosition();
             } else {
                 mov_num = 0;
             }
-            enemies->UpdateShooting(window);
+            enemies->UpdateShooting(window, user );
 
             if (user->IsDestroyed()) {
                 std::cout << "Player airplane destroyed! Game over!" << std::endl;
