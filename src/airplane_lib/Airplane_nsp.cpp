@@ -30,3 +30,12 @@ void airplane::MoveSpriteUserControl(sf::Sprite& sprite, int speed,
         sprite.move(speed, 0.f);   
     }
 }
+
+
+std::vector<sf::Sprite>& Airplane::getProjectiles() {
+    return shooting.getProjectiles();
+}
+
+sf::FloatRect Airplane::GetBounds() const {
+    return sprite_.getGlobalBounds();  // Возвращаем границы спрайта
+}
