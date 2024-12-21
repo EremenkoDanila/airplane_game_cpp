@@ -22,14 +22,18 @@ class Component : public AirVehicle {
       void SetTexture(const std::string& texturePath);
       void SetPosition(const sf::Vector2f& position) ;
       const sf::Texture& GetTexture();
-      sf::Vector2f GetPosition() ; 
+      sf::Vector2f GetPosition();
+      sf::FloatRect GetBounds() const override;
       void MoveSprite();
       void MoveSprite(std::vector<char> mass_for_move, int mov_num);
       void Display(sf::RenderWindow& window);
       void Shoot(); 
-      void UpdateShooting(sf::RenderWindow& window) ; 
+      void UpdateShooting(sf::RenderWindow& window);
+      void RemoveDestroyedObjects();
+      void TakeDamage(int damage) override;
+      void HandleInput(sf::Keyboard::Key key) override;
+      bool IsDestroyed() const override;
+      std::vector<sf::Sprite>& getProjectiles() override;
 };
-
-
 
 #endif 

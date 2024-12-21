@@ -13,6 +13,7 @@ Airplane::~Airplane(){
     std::cout << "the airplane was deleted" << std::endl;
 }
 
+
 Airplane::Airplane(char flg, int hp, int speed, 
                    const std::string& texturePath,
                    const sf::Vector2f& position, 
@@ -37,6 +38,54 @@ Airplane::Airplane(char flg, int hp, int speed,
 }
 
 
+// Метод для проверки, уничтожен ли самолет
+bool Airplane::IsDestroyed() const {
+    return destroyed;  // Возвращает состояние уничтожения
+}
+
+
+// Реализация метода стрельбы
+void Airplane::Shoot() {
+    //shooting.Shoot(getPosition()); // Стрельба из текущей позиции самолёта
+    // Получаем текущую позицию самолета (верхний левый угол спрайта)
+    sf::Vector2f position = sprite_.getPosition();
+
+    // Получаем границы спрайта
+    sf::FloatRect sprite_bounds = sprite_.getGlobalBounds();
+
+    // Инициализируем смещения
+    float bullet_x = position.x;  // По оси X
+    float bullet_y = position.y;  // По оси Y
+
+    // Для союзного самолета: пули из правой стороны, центр по высоте
+    if (shooting.GetDirection() > 0) {  // Направление вправо
+        bullet_x -= sprite_bounds.width / 5;  // Смещение влево
+        bullet_y += sprite_bounds.height / 2.5;  // Центр по высоте
+    }
+
+    // Для вражеского самолета: пули выходят слева, выше центра
+    else if (shooting.GetDirection() < 0) {  // Направление влево
+        bullet_x += sprite_bounds.width / 4;  // Смещение вправо
+        bullet_y -= sprite_bounds.height / 1.75;  // Поднимаем пули вверх
+    }
+
+    // Итоговая позиция пули
+    sf::Vector2f bullet_position(bullet_x, bullet_y);
+
+    // Отладочный вывод
+    std::cout << "Bullet position: x=" << bullet_position.x << ", y=" << bullet_position.y << std::endl;
+
+    // Передаём позицию для создания пули
+    shooting.Shoot(bullet_position);
+}
+
+
+
+void Airplane::HandleInput(sf::Keyboard::Key key) {
+    shooting.HandleInput(key);  // Переключение стратегии стрельбы через объект Shooting
+}
+
+
 void Airplane::SetTexture(const std::string& ktexturePath){
     if (!texture_.loadFromFile(ktexturePath)) {
         std::cerr << "Failed to load airplane texture from: " << ktexturePath << std::endl;
@@ -44,6 +93,18 @@ void Airplane::SetTexture(const std::string& ktexturePath){
     }
     sprite_.setTexture(texture_);
 }
+
+
+void Airplane::TakeDamage(int damage) {
+    hp_ -= damage;  // Уменьшаем здоровье
+    std::cout << "Airplane hit! HP remaining: " << hp_ << std::endl;
+
+    if (hp_ <= 0) {
+        std::cout << "Airplane destroyed!" << std::endl;
+        destroyed = true;  // Устанавливаем флаг уничтожения
+    }
+}
+
 
 void Airplane::SetPosition(const sf::Vector2f& kposition){
     sprite_.setPosition(kposition);
@@ -100,12 +161,8 @@ void Airplane::MoveSprite() {
     }
 }
 
-void Airplane::Shoot(){
-    shooting.shoot(GetPosition()); // Стрельба из текущей позиции самолёта
-}
-
 void Airplane::UpdateShooting(sf::RenderWindow& window){
-    shooting.update(window); // Обновление и отрисовка снарядов
+    shooting.Update(window); // Обновление и отрисовка снарядов
 }
 
 void Airplane::SetHp(int hp){

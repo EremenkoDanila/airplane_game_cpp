@@ -26,6 +26,12 @@ class AirVehicle{
     virtual void UpdateShooting(sf::RenderWindow& window) = 0; 
     virtual void AddObject(AirVehicle* object) = 0;
     virtual void RemoveObject(AirVehicle* object) = 0;
+    virtual void HandleInput(sf::Keyboard::Key key) = 0;
+    virtual bool IsDestroyed() const = 0;
+    virtual void TakeDamage(int damage) = 0; 
+    virtual std::vector<sf::Sprite>& getProjectiles() = 0;
+    virtual sf::FloatRect GetBounds() const = 0;
+    
 };
 
 #endif 

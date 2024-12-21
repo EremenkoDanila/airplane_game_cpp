@@ -18,7 +18,7 @@ class Airplane : public AirVehicle{
 
     void AddObject(AirVehicle* object);
     void RemoveObject(AirVehicle* object);
-    
+    bool destroyed = false; 
  public:
     Airplane();
     ~Airplane();
@@ -38,6 +38,11 @@ class Airplane : public AirVehicle{
     void Display(sf::RenderWindow& window);
     void Shoot() override; 
     void UpdateShooting(sf::RenderWindow& window) override; 
+    void HandleInput(sf::Keyboard::Key key) override;  // Смена оружия
+    void TakeDamage(int damage);  // Уменьшить HP при попадании пули
+    bool IsDestroyed() const override;     // Проверить, уничтожен ли самолет
+    std::vector<sf::Sprite>& getProjectiles() override;
+    sf::FloatRect GetBounds() const override;
 };
 
 #endif 
