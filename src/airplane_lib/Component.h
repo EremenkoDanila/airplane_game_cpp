@@ -28,6 +28,7 @@ class Component : public AirVehicle {
       void MoveSprite(std::vector<char> mass_for_move, int mov_num);
       void Display(sf::RenderWindow& window);
       void Shoot(); 
+      void Shoots();
       void UpdateShooting(sf::RenderWindow& window);
       void RemoveDestroyedObjects();
       void TakeDamage(int damage) override;

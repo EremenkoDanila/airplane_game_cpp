@@ -25,7 +25,7 @@ void airplane::MoveSpriteUserControl(sf::Sprite& sprite, int speed,
         // Перемещаем спрайт влево
         sprite.move(-speed, 0.f);  
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && (position.x < (KWINDOW_WIDTH-(KWINDOW_WIDTH * 0.01)) - 450)){
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && (position.x < (KWINDOW_WIDTH-(KWINDOW_WIDTH * 0.01)) - 600)){
         // Перемещаем спрайт вправо
         sprite.move(speed, 0.f);   
     }
