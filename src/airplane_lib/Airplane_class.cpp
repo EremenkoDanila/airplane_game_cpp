@@ -58,15 +58,15 @@ void Airplane::Shoot() {
     float bullet_y = position.y;  // По оси Y
 
     // Для союзного самолета: пули из правой стороны, центр по высоте
-    if (shooting.GetDirection() > 0) {  // Направление вправо
-        bullet_x -= sprite_bounds.width / 5;  // Смещение влево
+    if ( sprite_.getPosition().x < 1400) {  // Направление вправо
+        bullet_x -= (sprite_bounds.width / 5);  // Смещение влево
         bullet_y += sprite_bounds.height / 2.5;  // Центр по высоте
     }
 
     // Для вражеского самолета: пули выходят слева, выше центра
-    else if (shooting.GetDirection() < 0) {  // Направление влево
-        bullet_x += sprite_bounds.width / 4;  // Смещение вправо
-        bullet_y -= sprite_bounds.height / 1.75;  // Поднимаем пули вверх
+    else if  (sprite_.getPosition().x >= 1400) {  // Направление влево
+        bullet_x -= 300 ;  // Смещение вправо
+        bullet_y -= 150;  // Поднимаем пули вверх
     }
 
     // Итоговая позиция пули

@@ -36,7 +36,8 @@ class Airplane : public AirVehicle{
     void MoveSprite();
     void MoveSprite(std::vector<char> mass_for_move,  int mov_num) override;
     void Display(sf::RenderWindow& window);
-    void Shoot() override; 
+    void Shoot() override;
+    void Shoots(){}; 
     void UpdateShooting(sf::RenderWindow& window) override; 
     void HandleInput(sf::Keyboard::Key key) override;  // Смена оружия
     void TakeDamage(int damage);  // Уменьшить HP при попадании пули

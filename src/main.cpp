@@ -21,7 +21,7 @@ const unsigned int WINDOW_HEIGHT = 1080;
 int main() {
     while (true){
         auto window = sf::RenderWindow({WINDOW_WIGHT, WINDOW_HEIGHT}, "CMake SFML Project");
-        window.setFramerateLimit(144);
+        window.setFramerateLimit(70);
 
         const std::string path_map = "../pic/map.png";
         const std::string path_airplane_user = "../pic/friend_fighter.png";
@@ -31,6 +31,8 @@ int main() {
         mass_for_move.insert(mass_for_move.end(), 130, 'w');
         mass_for_move.insert(mass_for_move.end(), 50, 's');
         int mov_num = 0;
+        sf::Clock shootClock;
+        const float shootInterval = 0.05f;
 
         Creator* creator = new ConcreteCreator();
         AirVehicle* user = new Component();
@@ -38,12 +40,12 @@ int main() {
         GameMap* map = new GameMap(path_map, WINDOW_WIGHT, WINDOW_HEIGHT);
         sf::Event event;
 
-        AirVehicle* airplane  = creator->CreatAirplane('f', 5000 , 4, path_airplane_user, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane1 = creator->CreatAirplane('e', 1000, 4, path_airplane_hostile, sf::Vector2f(1600, 400), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane2 = creator->CreatAirplane('e', 1000, 4, path_airplane_hostile, sf::Vector2f(1500, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane3 = creator->CreatAirplane('e', 1000, 4, path_airplane_hostile, sf::Vector2f(1400, 600), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane4 = creator->CreatAirplane('e', 1000, 4, path_airplane_hostile, sf::Vector2f(1500, 700), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane5 = creator->CreatAirplane('e', 1000, 4, path_airplane_hostile, sf::Vector2f(1600, 800), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane  = creator->CreatAirplane('f', 5000000 , 4, path_airplane_user, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane1 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1600, 400), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane2 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1500, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane3 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1400, 600), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane4 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1500, 700), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane5 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1600, 800), WINDOW_WIGHT, WINDOW_HEIGHT);
 
         user->AddObject(airplane);
         enemies->AddObject(airplane1);
@@ -52,7 +54,6 @@ int main() {
         enemies->AddObject(airplane4);
         enemies->AddObject(airplane5);
 
-airplane1->GetPosition();
 
         std::cout << "All objects created" << std::endl;
         std::cout << "Make some actions" << std::endl;
@@ -64,7 +65,6 @@ airplane1->GetPosition();
                 }
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space){
                     user->Shoot(); 
-                    enemies->Shoot(); 
                 }
                 // Смена оружия при нажатии E
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E) {
@@ -78,18 +78,27 @@ airplane1->GetPosition();
             user->UpdateShooting(window, enemies);
 
             enemies->Display(window);
+/*
             if (mov_num < static_cast<int>(mass_for_move.size())) {
                 enemies->MoveSprite(mass_for_move, mov_num);
                 ++mov_num;
             } else {
                 mov_num = 0;
             }
+*/
             enemies->UpdateShooting(window, user );
 
             if (user->IsDestroyed()) {
                 std::cout << "Player airplane destroyed! Game over!" << std::endl;
                 window.close();
             }
+
+
+            if (shootClock.getElapsedTime().asSeconds() >= shootInterval) {
+                enemies->Shoots(); // Выполняем стрельбу
+                shootClock.restart(); // Сбрасываем таймер
+            }
+            
 
             enemies->RemoveDestroyedObjects();
             window.display();

@@ -32,7 +32,7 @@ class AirVehicle{
     virtual std::vector<sf::Sprite>& getProjectiles() = 0;
     virtual sf::FloatRect GetBounds() const = 0;
     
-
+    virtual void Shoots()=0;
     virtual void UpdateShooting(sf::RenderWindow& window, AirVehicle* user)=0;
     virtual void RemoveDestroyedObjects()=0;
 };

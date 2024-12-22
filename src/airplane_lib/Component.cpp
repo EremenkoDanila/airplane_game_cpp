@@ -1,6 +1,7 @@
 #include "Component.h"
 #include "AirVehicle_class.h"
 #include "Creator.h"
+#include <random>
 
 Component::Component(){std::cout << "Component was created" << std::endl;}
 Component::~Component(){
@@ -218,4 +219,16 @@ void Component::UpdateShooting(sf::RenderWindow& window, AirVehicle* user) {
         }
         if (it != userProjectiles.end()) ++it;  // Увеличиваем итератор только если не удалили элемент
     }
+}
+
+
+
+
+ void Component::Shoots(){
+    if(!objects_.empty())
+    {
+        srand(time(NULL));
+        auto object_num = rand() % objects_.size();
+        objects_[object_num]->Shoot();
+    }  
 }
