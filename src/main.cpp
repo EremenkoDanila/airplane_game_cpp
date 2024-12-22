@@ -21,7 +21,7 @@ const unsigned int WINDOW_HEIGHT = 1080;
 int main() {
     while (true){
         auto window = sf::RenderWindow({WINDOW_WIGHT, WINDOW_HEIGHT}, "CMake SFML Project");
-        window.setFramerateLimit(70);
+        window.setFramerateLimit(100);
 
         const std::string path_map = "../pic/map.png";
         const std::string path_airplane_user = "../pic/friend_fighter.png";
@@ -40,7 +40,7 @@ int main() {
         GameMap* map = new GameMap(path_map, WINDOW_WIGHT, WINDOW_HEIGHT);
         sf::Event event;
 
-        AirVehicle* airplane  = creator->CreatAirplane('f', 5000000 , 4, path_airplane_user, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane  = creator->CreatAirplane('f', 1000 , 4, path_airplane_user, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
         AirVehicle* airplane1 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1600, 400), WINDOW_WIGHT, WINDOW_HEIGHT);
         AirVehicle* airplane2 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1500, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
         AirVehicle* airplane3 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1400, 600), WINDOW_WIGHT, WINDOW_HEIGHT);
@@ -78,14 +78,14 @@ int main() {
             user->UpdateShooting(window, enemies);
 
             enemies->Display(window);
-/*
+
             if (mov_num < static_cast<int>(mass_for_move.size())) {
                 enemies->MoveSprite(mass_for_move, mov_num);
                 ++mov_num;
             } else {
                 mov_num = 0;
             }
-*/
+
             enemies->UpdateShooting(window, user );
 
             if (user->IsDestroyed()) {
