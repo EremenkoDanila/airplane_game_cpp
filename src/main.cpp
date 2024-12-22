@@ -32,7 +32,7 @@ int main() {
         mass_for_move.insert(mass_for_move.end(), 50, 's');
         int mov_num = 0;
         sf::Clock shootClock;
-        const float shootInterval = 0.05f;
+        const float shootInterval = 0.1f;
 
         Creator* creator = new ConcreteCreator();
         AirVehicle* user = new Component();
@@ -40,12 +40,12 @@ int main() {
         GameMap* map = new GameMap(path_map, WINDOW_WIGHT, WINDOW_HEIGHT);
         sf::Event event;
 
-        AirVehicle* airplane  = creator->CreatAirplane('f', 1000 , 4, path_airplane_user, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane1 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1600, 400), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane2 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1500, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane3 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1400, 600), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane4 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1500, 700), WINDOW_WIGHT, WINDOW_HEIGHT);
-        AirVehicle* airplane5 = creator->CreatAirplane('e', 2000, 4, path_airplane_hostile, sf::Vector2f(1600, 800), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane  = creator->CreatAirplane('f', 300 , 4, path_airplane_user, sf::Vector2f(960, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane1 = creator->CreatAirplane('e', 1000, 4, path_airplane_hostile, sf::Vector2f(1600, 400), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane2 = creator->CreatAirplane('e', 1000, 4, path_airplane_hostile, sf::Vector2f(1500, 500), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane3 = creator->CreatAirplane('e', 1000, 4, path_airplane_hostile, sf::Vector2f(1400, 600), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane4 = creator->CreatAirplane('e', 1000, 4, path_airplane_hostile, sf::Vector2f(1500, 700), WINDOW_WIGHT, WINDOW_HEIGHT);
+        AirVehicle* airplane5 = creator->CreatAirplane('e', 1000, 4, path_airplane_hostile, sf::Vector2f(1600, 800), WINDOW_WIGHT, WINDOW_HEIGHT);
 
         user->AddObject(airplane);
         enemies->AddObject(airplane1);
